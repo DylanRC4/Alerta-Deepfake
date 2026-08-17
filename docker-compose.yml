@@ -32,6 +32,8 @@ services:
         condition: service_healthy
     ports:
       - "3000:3000"
+    volumes:
+      - uploads_data:/app/uploads
   nginx:
     image: nginx:alpine
     container_name: alerta_nginx
@@ -61,3 +63,4 @@ services:
 volumes:
   db_data:
   pgadmin_data:
+  uploads_data:

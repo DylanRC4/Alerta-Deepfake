@@ -18,6 +18,8 @@ const formReporte = document.querySelector('#formulario-reporte');
 if (formReporte) {
   const selectCategoria = formReporte.querySelector('#id_categoria');
   const mensajeEstado = document.querySelector('#mensaje-estado');
+  const inputArchivo = formReporte.querySelector('#archivo_evidencia');
+  const inputEnlace = formReporte.querySelector('#enlace_archivo');
 
   // Cargar categorías desde la API para el <select>
   fetch('/api/categorias')
@@ -34,6 +36,20 @@ if (formReporte) {
       selectCategoria.innerHTML = '<option value="">No se pudieron cargar las categorías</option>';
     });
 
+  // Evidencia: archivo O enlace, no ambos a la vez
+  if (inputArchivo && inputEnlace) {
+    inputArchivo.addEventListener('change', () => {
+      const hayArchivo = inputArchivo.files.length > 0;
+      inputEnlace.disabled = hayArchivo;
+      if (hayArchivo) inputEnlace.value = '';
+    });
+    inputEnlace.addEventListener('input', () => {
+      const hayEnlace = inputEnlace.value.trim() !== '';
+      inputArchivo.disabled = hayEnlace;
+      if (hayEnlace) inputArchivo.value = '';
+    });
+  }
+
   formReporte.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -42,7 +58,7 @@ if (formReporte) {
       return;
     }
 
-    const datos = Object.fromEntries(new FormData(formReporte).entries());
+    const formData = new FormData(formReporte);
 
     mensajeEstado.className = 'mensaje-estado visible';
     mensajeEstado.textContent = 'Enviando reporte...';
@@ -50,16 +66,20 @@ if (formReporte) {
     try {
       const resp = await fetch('/api/reportes', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datos)
+        body: formData
       });
       const resultado = await resp.json();
 
-      if (!resp.ok) throw new Error(resultado.error || 'No se pudo registrar el reporte');
+      if (!resp.ok) {
+        const detalle = Array.isArray(resultado.detalles) ? ` (${resultado.detalles.join('; ')})` : '';
+        throw new Error((resultado.error || 'No se pudo registrar el reporte') + detalle);
+      }
 
       mensajeEstado.className = 'mensaje-estado visible exito';
       mensajeEstado.innerHTML = `<span class="expediente-numero">Expediente N.° ${Number(resultado.id_reporte)}</span>Reporte registrado correctamente. Guarda este número como referencia.`;
       formReporte.reset();
+      inputArchivo.disabled = false;
+      inputEnlace.disabled = false;
     } catch (err) {
       mensajeEstado.className = 'mensaje-estado visible error';
       mensajeEstado.textContent = `Error: ${err.message}`;

@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <form id="formulario-reporte" class="formulario" novalidate>
+      <form id="formulario-reporte" class="formulario" novalidate enctype="multipart/form-data">
         <div class="campo">
           <label for="fecha_incidente">Fecha del incidente</label>
           <input type="date" id="fecha_incidente" name="fecha_incidente" required>
@@ -87,6 +87,7 @@
           <select id="tipo_evidencia" name="tipo_evidencia">
             <option value="" selected>Sin evidencia adjunta</option>
             <option value="Captura de pantalla">Captura de pantalla</option>
+            <option value="Documento">Documento (PDF)</option>
             <option value="Audio">Audio</option>
             <option value="Video">Video</option>
             <option value="Enlace">Enlace / URL</option>
@@ -95,9 +96,16 @@
         </div>
 
         <div class="campo">
-          <label for="enlace_archivo">Enlace a la evidencia (opcional)</label>
+          <label for="archivo_evidencia">Subir archivo de evidencia (opcional)</label>
+          <input type="file" id="archivo_evidencia" name="archivo_evidencia"
+                 accept="image/jpeg,image/png,image/webp,application/pdf,audio/mpeg,audio/wav,audio/ogg,video/mp4,video/webm">
+          <span class="ayuda">Imagen, PDF, audio o video. Máximo 15 MB.</span>
+        </div>
+
+        <div class="campo">
+          <label for="enlace_archivo">O pega un enlace a la evidencia (opcional)</label>
           <input type="url" id="enlace_archivo" name="enlace_archivo" placeholder="Ej: enlace de Google Drive, Imgur, etc.">
-          <span class="ayuda">Sube tu evidencia a un servicio externo (Drive, Imgur, etc.) y pega aquí el enlace. Este sitio no almacena archivos directamente.</span>
+          <span class="ayuda">Usa esto solo si NO subiste un archivo arriba: pega un enlace externo (Drive, Imgur, etc.).</span>
         </div>
 
         <div>

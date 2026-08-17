@@ -8,3 +8,4 @@ coverage/
 dist/
 build/
 .DS_Store
+backend/uploads/

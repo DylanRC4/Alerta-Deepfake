@@ -50,10 +50,14 @@ y protección de datos personales, con backend para gestionar reportes de incide
 | GET    | /api/reportes     | Listar reportes registrados, con su evidencia asociada       |
 
 `POST /api/reportes` valida los campos en el servidor (fechas, longitudes, formato de
-correo) y aplica un límite de 10 envíos por IP cada 15 minutos para evitar spam. Si el
-formulario incluye `tipo_evidencia` y `enlace_archivo`, ambos se guardan en la tabla
-`evidencias`, vinculados al reporte mediante una transacción (si algo falla, no se guarda
-nada a medias).
+correo) y aplica un límite de 10 envíos por IP cada 15 minutos para evitar spam. La
+evidencia es opcional y admite **una de estas dos formas, no ambas**: subir un archivo
+(`archivo_evidencia`, máx. 15 MB, imagen/PDF/audio/video) o pegar un enlace externo
+(`enlace_archivo`). En ambos casos se guarda en la tabla `evidencias`, vinculada al
+reporte mediante una transacción (si algo falla, no se guarda nada a medias ni queda un
+archivo huérfano en disco).
+
+Los archivos subidos quedan accesibles en `GET /uploads/<nombre-aleatorio>`.
 
 ## Estructura
 
@@ -94,7 +98,7 @@ mobile-first y con accesibilidad básica (skip-link, foco visible, `aria-current
 - `prevencion.html` — checklist, ruta de actuación, normativa colombiana, recomendaciones.
 - `simulador.html` — casos interactivos de detección.
 - `reporte.html` — formulario conectado a `POST /api/reportes` y `GET /api/categorias`,
-  con campo opcional de evidencia (tipo + enlace externo).
+  con evidencia opcional (subir archivo o pegar un enlace externo).
 
 ## Base de datos
 
@@ -104,9 +108,9 @@ Tres tablas (`db/init.sql`):
   rostro, video falso, perfil falso), sembrado una sola vez al crear el contenedor. No
   se espera que reciba filas nuevas en operación normal — es solo el catálogo del `<select>`.
 - `reportes`: un registro por incidente reportado.
-- `evidencias`: cero o más registros por reporte, con el tipo y un enlace externo a la
-  evidencia (el sitio no almacena archivos directamente; el usuario sube su evidencia a
-  un servicio externo como Drive o Imgur y pega el enlace).
+- `evidencias`: cero o más registros por reporte, con el tipo y un enlace al archivo
+  (subido directamente al sitio, guardado en el volumen Docker `uploads_data`) o a un
+  recurso externo (Drive, Imgur, etc.), según lo que haya elegido el usuario.
 
 ## Seguridad
 
@@ -120,14 +124,21 @@ Tres tablas (`db/init.sql`):
 - Cabeceras de seguridad HTTP vía `helmet`.
 - `.env` fuera de Git (`.gitignore`); `.env.example` con valores ficticios como
   referencia.
+- Carga de archivos de evidencia con múltiples capas de control: lista blanca de tipos
+  MIME permitidos, límite de tamaño (15 MB), nombre de archivo aleatorio (no se usa el
+  nombre original, evita path traversal), y verificación del **contenido real** del
+  archivo (magic bytes vía `file-type`), no solo su extensión o el tipo MIME declarado
+  por el navegador. Los archivos se guardan fuera del árbol de Git, en un volumen Docker
+  dedicado (`uploads_data`).
 
 ## Limitaciones actuales
 
 - No hay autenticación ni panel de administración: cualquiera con acceso a la URL puede
   leer `GET /api/reportes`. Aceptable mientras el proyecto es de uso educativo/local; si
   se expone públicamente, este endpoint debería protegerse.
-- La "evidencia" es un enlace externo, no una carga de archivos real (evita los riesgos
-  de seguridad de manejar uploads: tipo MIME, tamaño, almacenamiento).
+- Los archivos subidos no pasan por un antivirus/escáner de malware (fuera del alcance
+  de este proyecto académico); solo se valida que el contenido coincida con un tipo de
+  archivo permitido (imagen, PDF, audio o video).
 - Sin pruebas automatizadas todavía.
 
 ## Cómo ejecutar pruebas
