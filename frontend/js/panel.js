@@ -110,12 +110,27 @@ if (panelLogin && panelDashboard) {
       } else {
         evidencias.forEach((ev, i) => {
           if (esUrlSegura(ev.enlace_archivo)) {
+            const esArchivoPropio = ev.enlace_archivo.startsWith('/uploads/');
+
             const a = document.createElement('a');
             a.href = ev.enlace_archivo;
             a.target = '_blank';
             a.rel = 'noopener noreferrer';
             a.textContent = ev.tipo_evidencia;
             tdEvidencia.appendChild(a);
+
+            // Solo para archivos subidos a este sitio: un enlace externo (Drive, Imgur...)
+            // lo controla el otro servicio, no podemos forzar su descarga desde aquí.
+            if (esArchivoPropio) {
+              const descarga = document.createElement('a');
+              descarga.href = ev.enlace_archivo;
+              descarga.download = '';
+              descarga.className = 'enlace-descarga';
+              descarga.title = 'Descargar archivo';
+              descarga.textContent = '⬇';
+              descarga.setAttribute('aria-label', `Descargar ${ev.tipo_evidencia}`);
+              tdEvidencia.appendChild(descarga);
+            }
           } else {
             tdEvidencia.appendChild(document.createTextNode(`${ev.tipo_evidencia} (enlace no válido)`));
           }

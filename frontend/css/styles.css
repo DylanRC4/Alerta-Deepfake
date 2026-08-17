@@ -391,3 +391,16 @@ textarea { min-height: 7rem; resize: vertical; }
 .sitio-footer a { color: #fff; }
 .sitio-footer p { color: #9AA4BC; font-size: 0.85rem; }
 .cita-legal { font-family: var(--font-mono); font-size: 0.78rem !important; letter-spacing: 0.02em; }
+
+/* ---------- Panel: enlace de descarga junto a la evidencia ---------- */
+.enlace-descarga {
+  display: inline-block;
+  margin-left: 0.35rem;
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0 0.35rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.enlace-descarga:hover { background: var(--color-bg); }
