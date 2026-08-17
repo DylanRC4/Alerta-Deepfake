@@ -15,7 +15,9 @@ y protección de datos personales, con backend para gestionar reportes de incide
    ```bash
    cp .env.example .env
    ```
-   Edita `.env` y define valores reales para `DB_PASSWORD` y `PGADMIN_PASSWORD`.
+   Edita `.env` y define valores reales para `DB_PASSWORD`, `PGADMIN_PASSWORD`,
+   `ADMIN_PASSWORD` (contraseña del panel de reportes) y `SESSION_SECRET` (cadena
+   aleatoria larga, usada solo para firmar la cookie de sesión del panel).
    **No hay valores por defecto**: si falta alguna de estas variables, `docker compose`
    se niega a levantar el servicio correspondiente y muestra un mensaje claro indicando
    cuál falta, en vez de usar una contraseña débil silenciosamente.
@@ -44,10 +46,14 @@ y protección de datos personales, con backend para gestionar reportes de incide
 
 | Método | Ruta              | Descripción                                              |
 |--------|-------------------|-----------------------------------------------------------|
-| GET    | /api/health       | Estado del backend                                         |
-| GET    | /api/categorias   | Catálogo de tipos de deepfake                               |
-| POST   | /api/reportes     | Registrar un nuevo reporte de incidente (con evidencia opcional) |
-| GET    | /api/reportes     | Listar reportes registrados, con su evidencia asociada       |
+| GET    | /api/health              | Estado del backend                                             |
+| GET    | /api/categorias           | Catálogo de tipos de deepfake                                   |
+| POST   | /api/reportes             | Registrar un nuevo reporte de incidente (con evidencia opcional) |
+| GET    | /api/reportes             | Listar reportes con su evidencia. **Requiere sesión de admin.** |
+| POST   | /api/admin/login          | Iniciar sesión en el panel (contraseña única, `ADMIN_PASSWORD`)  |
+| POST   | /api/admin/logout         | Cerrar sesión                                                    |
+| GET    | /api/admin/check          | Indica si la sesión actual está autenticada                     |
+| GET    | /api/admin/estadisticas   | Conteos agregados por categoría. **Requiere sesión de admin.**  |
 
 `POST /api/reportes` valida los campos en el servidor (fechas, longitudes, formato de
 correo) y aplica un límite de 10 envíos por IP cada 15 minutos para evitar spam. La
@@ -72,17 +78,25 @@ alerta-deepfake/
 │   ├── server.js
 │   ├── db.js
 │   ├── .dockerignore
-│   └── routes/
-│       ├── categorias.js
-│       └── reportes.js
+│   ├── middleware/
+│   │   └── adminAuth.js
+│   ├── routes/
+│   │   ├── categorias.js
+│   │   ├── reportes.js
+│   │   └── admin.js
+│   └── utils/
+│       └── detectarTipoArchivo.js
 ├── frontend/
 │   ├── index.html
 │   ├── tipologias.html
 │   ├── prevencion.html
 │   ├── simulador.html
 │   ├── reporte.html
+│   ├── panel.html
 │   ├── css/
 │   └── js/
+│       ├── main.js
+│       └── panel.js
 └── nginx/
     └── default.conf
 ```
@@ -99,6 +113,9 @@ mobile-first y con accesibilidad básica (skip-link, foco visible, `aria-current
 - `simulador.html` — casos interactivos de detección.
 - `reporte.html` — formulario conectado a `POST /api/reportes` y `GET /api/categorias`,
   con evidencia opcional (subir archivo o pegar un enlace externo).
+- `panel.html` — vista privada (contraseña) con la lista de reportes, sus evidencias y
+  estadísticas por categoría. Pensada para que la profesora revise el trabajo, no para
+  uso público.
 
 ## Base de datos
 
@@ -137,12 +154,21 @@ Tres tablas (`db/init.sql`):
   genérica con superficie de ataque innecesaria.
   Los archivos se guardan fuera del árbol de Git, en un volumen Docker dedicado
   (`uploads_data`).
+- Panel de reportes protegido por contraseña (`ADMIN_PASSWORD`): comparación con
+  `crypto.timingSafeEqual` (evita filtrar la contraseña por temporización), límite de
+  5 intentos de login cada 15 minutos, y cookie de sesión `httpOnly` + firmada
+  (`SESSION_SECRET`) que el navegador no puede leer ni falsificar. `GET /api/reportes`
+  y `GET /api/admin/estadisticas` exigen esa sesión. En el panel, los datos de usuario
+  se insertan al DOM con `textContent` (no `innerHTML`) y los enlaces de evidencia se
+  validan para aceptar solo `http`/`https`, evitando XSS almacenado vía `javascript:`
+  en el campo de enlace externo.
 
 ## Limitaciones actuales
 
-- No hay autenticación ni panel de administración: cualquiera con acceso a la URL puede
-  leer `GET /api/reportes`. Aceptable mientras el proyecto es de uso educativo/local; si
-  se expone públicamente, este endpoint debería protegerse.
+- El panel usa una sola contraseña compartida, no cuentas individuales por persona ni
+  roles. Suficiente para el alcance actual (una persona revisando el proyecto), pero no
+  serviría si varias personas necesitaran accesos distintos o trazabilidad de quién
+  entró.
 - Los archivos subidos no pasan por un antivirus/escáner de malware (fuera del alcance
   de este proyecto académico); solo se valida que el contenido coincida con un tipo de
   archivo permitido (imagen, PDF, audio o video).
@@ -157,6 +183,6 @@ de prueba desde `reporte.html` y confirmar en pgAdmin que aparece en `reportes` 
 
 ## Próximas mejoras
 
-- Panel simple para que la profesora revise y filtre los reportes desde el navegador.
-- Autenticación básica para ese panel.
+- Filtros y paginación en el panel (por categoría, fecha, con/sin evidencia).
+- Cuentas individuales para el panel si más de una persona necesita acceso.
 - Pruebas automatizadas de los endpoints y validadores.

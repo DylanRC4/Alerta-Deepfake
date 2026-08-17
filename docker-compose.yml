@@ -27,6 +27,8 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:?Debes definir DB_PASSWORD en tu archivo .env}
       DB_NAME: ${DB_NAME:-alerta_deepfake}
       PORT: 3000
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Debes definir ADMIN_PASSWORD en tu archivo .env}
+      SESSION_SECRET: ${SESSION_SECRET:?Debes definir SESSION_SECRET en tu archivo .env}
     depends_on:
       db:
         condition: service_healthy

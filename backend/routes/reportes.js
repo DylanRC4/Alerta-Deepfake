@@ -7,6 +7,7 @@ const fs = require('fs');
 const fsp = require('fs/promises');
 const crypto = require('crypto');
 const { detectarTipoReal } = require('../utils/detectarTipoArchivo');
+const { requiereAdmin } = require('../middleware/adminAuth');
 const pool = require('../db');
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -220,7 +221,8 @@ router.post('/', limitadorEnvio, subirArchivo, async (req, res) => {
 });
 
 // GET /api/reportes -> listar reportes con su categoría y evidencias asociadas
-router.get('/', async (req, res) => {
+// Protegido: contiene datos personales (nombre, correo) de quienes reportaron.
+router.get('/', requiereAdmin, async (req, res) => {
   try {
     const { rows } = await pool.query(
       `SELECT r.*, c.nombre_categoria,
