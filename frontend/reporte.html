@@ -79,7 +79,25 @@
 
         <div class="campo">
           <label for="descripcion_hechos">Descripción de los hechos</label>
-          <textarea id="descripcion_hechos" name="descripcion_hechos" required placeholder="Describe qué ocurrió, cuándo lo notaste y qué señales de alerta identificaste."></textarea>
+          <textarea id="descripcion_hechos" name="descripcion_hechos" required minlength="10" maxlength="4000" placeholder="Describe qué ocurrió, cuándo lo notaste y qué señales de alerta identificaste."></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="tipo_evidencia">Tipo de evidencia (opcional)</label>
+          <select id="tipo_evidencia" name="tipo_evidencia">
+            <option value="" selected>Sin evidencia adjunta</option>
+            <option value="Captura de pantalla">Captura de pantalla</option>
+            <option value="Audio">Audio</option>
+            <option value="Video">Video</option>
+            <option value="Enlace">Enlace / URL</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="enlace_archivo">Enlace a la evidencia (opcional)</label>
+          <input type="url" id="enlace_archivo" name="enlace_archivo" placeholder="Ej: enlace de Google Drive, Imgur, etc.">
+          <span class="ayuda">Sube tu evidencia a un servicio externo (Drive, Imgur, etc.) y pega aquí el enlace. Este sitio no almacena archivos directamente.</span>
         </div>
 
         <div>
