@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerta Deepfake — Inicio</title>
+  <meta name="description" content="Sitio educativo para prevenir, identificar y reportar deepfakes, suplantación de identidad y vulneración de datos personales en Colombia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="franja-alerta" aria-hidden="true"></div>
+
+  <header class="sitio-header">
+    <nav class="nav-barra" aria-label="Navegación principal">
+      <a class="marca" href="index.html">Alerta Deepfake<span>Proyecto ABP · Ingeniería Web</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu-principal">Menú</button>
+      <ul class="nav-lista" id="menu-principal">
+        <li><a href="index.html" aria-current="page">Inicio</a></li>
+        <li><a href="tipologias.html">Tipologías</a></li>
+        <li><a href="prevencion.html">Prevención</a></li>
+        <li><a href="simulador.html">Simulador</a></li>
+        <li><a href="reporte.html">Reportar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero">
+      <div class="contenedor">
+        <div class="hero-texto">
+          <span class="expediente-numero">Expediente ABP · Ingeniería Web</span>
+          <h1>La misma tecnología que crea efectos de cine hoy también clona tu voz y tu rostro</h1>
+          <p>Sitio educativo para aprender a reconocer, prevenir y reportar deepfakes, suplantación de identidad y vulneración de datos personales, con base en el marco legal colombiano.</p>
+          <p>
+            <a class="boton boton-primario" href="tipologias.html">Conocer las tipologías</a>
+            <a class="boton boton-secundario" href="reporte.html">Reportar un caso</a>
+          </p>
+          <blockquote class="pregunta-orientadora">
+            <p>¿Cómo diseñar una solución web educativa, accesible y adaptable que permita prevenir, identificar y reportar posibles casos de deepfakes, suplantación de identidad y vulneración de datos personales?</p>
+          </blockquote>
+        </div>
+        <div class="sello" aria-hidden="true">Expediente<br>ABP · 2026</div>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <h2>El problema, en contexto</h2>
+      <p>La inteligencia artificial generativa —los mismos algoritmos que crean imágenes, voces y videos a partir de patrones aprendidos— también se usa para fabricar contenido falso casi indistinguible del real. Cuando ese contenido imita la identidad de una persona, hablamos de un <strong>deepfake</strong>: una herramienta cada vez más accesible para la suplantación, el fraude y la manipulación.</p>
+
+      <div class="tarjetas" style="margin-top: 1rem;">
+        <article class="tarjeta">
+          <h3>Víctimas</h3>
+          <p>Usuarios de internet expuestos a manipulación, estafas y suplantación de su identidad digital y biométrica.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Atacantes</h3>
+          <p>Personas que se valen de programas informáticos y modelos de IA para cometer delitos, suplantar identidades y capturar datos.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <h2>¿Qué es la inteligencia artificial generativa?</h2>
+      <p>Es una familia de algoritmos entrenados con enormes cantidades de imágenes, audios y videos reales. A partir de esos patrones, pueden generar contenido nuevo: una voz que nunca se grabó, un rostro que no existe, o un video de alguien diciendo algo que nunca dijo.</p>
+      <p>Usada de forma legítima, esta tecnología impulsa el cine, los videojuegos y la accesibilidad (por ejemplo, voces sintéticas para personas con discapacidad del habla). El problema no es la tecnología en sí, sino su uso malicioso para <strong>suplantar identidades biométricas</strong> sin consentimiento.</p>
+    </section>
+
+    <section class="contenedor">
+      <h2>El bien jurídico protegido: tu información y tus datos</h2>
+      <p>La legislación colombiana protege especialmente los <strong>datos biométricos</strong> —tu voz y tu rostro— frente a usos no autorizados con inteligencia artificial. Estos datos identifican quién eres de forma única, y por eso su vulneración tiene un tratamiento legal específico.</p>
+      <div class="aviso">
+        <div>
+          <strong>Dato clave:</strong> según cifras del sector, la suplantación de identidad reportada en Colombia pasó de 333 casos en 2019 a 1.527 en 2020 — un crecimiento del 409% en un solo año.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sitio-footer">
+    <div class="contenedor">
+      <p><strong>Aviso:</strong> este es un proyecto educativo (Aprendizaje Basado en Problemas — Ingeniería Web) y no reemplaza una denuncia oficial. Para denunciar, acude a la <a href="https://www.fiscalia.gov.co" target="_blank" rel="noopener">Fiscalía General de la Nación</a> o al <a href="https://www.ccp.gov.co" target="_blank" rel="noopener">Centro Cibernético Policial</a>.</p>
+      <p class="cita-legal">Basado en la Ley 1273 de 2009 (Delitos Informáticos) y la Ley 1581 de 2012 (Habeas Data), Colombia.</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

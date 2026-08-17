@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Alerta Deepfake DB",
+      "Group": "Servers",
+      "Host": "db",
+      "Port": 5432,
+      "MaintenanceDB": "alerta_deepfake",
+      "Username": "alerta_user",
+      "SSLMode": "prefer"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerta Deepfake — Simulador</title>
+  <meta name="description" content="Casos simulados interactivos para entrenarte en la detección de deepfakes y suplantación de identidad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="franja-alerta" aria-hidden="true"></div>
+
+  <header class="sitio-header">
+    <nav class="nav-barra" aria-label="Navegación principal">
+      <a class="marca" href="index.html">Alerta Deepfake<span>Proyecto ABP · Ingeniería Web</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu-principal">Menú</button>
+      <ul class="nav-lista" id="menu-principal">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tipologias.html">Tipologías</a></li>
+        <li><a href="prevencion.html">Prevención</a></li>
+        <li><a href="simulador.html" aria-current="page">Simulador</a></li>
+        <li><a href="reporte.html">Reportar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero">
+      <div class="contenedor">
+        <div class="hero-texto">
+          <h1>Pon a prueba tu criterio</h1>
+          <p>Lee cada situación y decide: ¿es un intento de suplantación o es legítimo? Recibirás retroalimentación inmediata con las señales clave.</p>
+        </div>
+        <div class="sello" aria-hidden="true">Modo<br>entrenamiento</div>
+      </div>
+    </section>
+
+    <section id="simulador" class="contenedor" aria-label="Simulador de casos">
+      <p class="progreso-simulador" id="progreso-simulador" aria-live="polite"></p>
+      <div class="caso-simulado">
+        <h2 class="visually-hidden">Situación a evaluar</h2>
+        <p id="caso-contexto"></p>
+        <div class="caso-opciones">
+          <button class="boton boton-primario" data-respuesta="falso">Es un intento de suplantación</button>
+          <button class="boton boton-outline" data-respuesta="real">Es legítimo</button>
+        </div>
+        <div id="caso-retro" class="caso-retro" role="status" aria-live="polite"></div>
+        <button id="siguiente-caso" class="boton boton-outline" style="margin-top:1rem;" hidden>Siguiente caso →</button>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <div class="aviso" role="note">
+        <div>
+          <strong>Recuerda:</strong> este simulador es una herramienta de entrenamiento con casos ilustrativos. Ante una duda real, sigue la <a href="prevencion.html">ruta de actuación</a> y verifica siempre por un canal alterno.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sitio-footer">
+    <div class="contenedor">
+      <p><strong>Aviso:</strong> este es un proyecto educativo (Aprendizaje Basado en Problemas — Ingeniería Web) y no reemplaza una denuncia oficial. Para denunciar, acude a la <a href="https://www.fiscalia.gov.co" target="_blank" rel="noopener">Fiscalía General de la Nación</a> o al <a href="https://www.ccp.gov.co" target="_blank" rel="noopener">Centro Cibernético Policial</a>.</p>
+      <p class="cita-legal">Basado en la Ley 1273 de 2009 (Delitos Informáticos) y la Ley 1581 de 2012 (Habeas Data), Colombia.</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerta Deepfake — Tipologías</title>
+  <meta name="description" content="Clasificación de los tipos de deepfake: clonación de voz, generación de rostro, video falso y perfiles falsos, con señales de detección.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="franja-alerta" aria-hidden="true"></div>
+
+  <header class="sitio-header">
+    <nav class="nav-barra" aria-label="Navegación principal">
+      <a class="marca" href="index.html">Alerta Deepfake<span>Proyecto ABP · Ingeniería Web</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu-principal">Menú</button>
+      <ul class="nav-lista" id="menu-principal">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tipologias.html" aria-current="page">Tipologías</a></li>
+        <li><a href="prevencion.html">Prevención</a></li>
+        <li><a href="simulador.html">Simulador</a></li>
+        <li><a href="reporte.html">Reportar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero">
+      <div class="contenedor">
+        <div class="hero-texto">
+          <h1>Cuatro formas de suplantar tu identidad con IA</h1>
+          <p>Cada tipología corresponde a una categoría del catálogo usado en el formulario de reporte. Conocerlas es el primer paso para identificarlas.</p>
+        </div>
+        <div class="sello" aria-hidden="true">4 tipos<br>de caso</div>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <div class="tarjetas tarjetas-4">
+        <article class="tarjeta">
+          <span class="expediente-numero">Expediente 01</span>
+          <span class="riesgo riesgo-alto">Riesgo alto</span>
+          <h3>Clonación de voz</h3>
+          <p>Recrea el timbre y la entonación de una persona a partir de pocos segundos de audio real, usada en llamadas o notas de voz para pedir dinero o información.</p>
+          <h4>Señales de alerta</h4>
+          <ul>
+            <li>Urgencia extrema y presión para no colgar.</li>
+            <li>Se evita o rechaza una videollamada de verificación.</li>
+            <li>Ligeras distorsiones metálicas o pausas poco naturales.</li>
+          </ul>
+        </article>
+
+        <article class="tarjeta">
+          <span class="expediente-numero">Expediente 02</span>
+          <span class="riesgo riesgo-medio">Riesgo medio</span>
+          <h3>Generación de rostro (imágenes)</h3>
+          <p>Crea o altera fotografías de un rostro para perfiles falsos, montajes o material fraudulento.</p>
+          <h4>Señales de alerta</h4>
+          <ul>
+            <li>Asimetrías en orejas, dientes o manos.</li>
+            <li>Fondo borroso o inconsistente con la iluminación del rostro.</li>
+            <li>Pocas fotos disponibles de la misma persona en otros ángulos.</li>
+          </ul>
+        </article>
+
+        <article class="tarjeta">
+          <span class="expediente-numero">Expediente 03</span>
+          <span class="riesgo riesgo-alto">Riesgo alto</span>
+          <h3>Video falso (deepfake)</h3>
+          <p>Sustituye el rostro o genera un video completo de una persona diciendo o haciendo algo que nunca ocurrió.</p>
+          <h4>Señales de alerta</h4>
+          <ul>
+            <li>Parpadeo irregular o ausencia de parpadeo.</li>
+            <li>Desincronización entre labios y audio.</li>
+            <li>Bordes difusos alrededor del rostro o el cabello.</li>
+          </ul>
+        </article>
+
+        <article class="tarjeta">
+          <span class="expediente-numero">Expediente 04</span>
+          <span class="riesgo riesgo-medio">Riesgo medio</span>
+          <h3>Creación de perfil falso</h3>
+          <p>Combina foto generada, biografía inventada y actividad artificial para simular una identidad real en redes sociales.</p>
+          <h4>Señales de alerta</h4>
+          <ul>
+            <li>Cuenta creada recientemente con actividad reciente masiva.</li>
+            <li>Seguidores desproporcionados frente a la interacción real.</li>
+            <li>Ofertas de dinero, empleo o inversión no solicitadas.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <div class="aviso" role="note">
+        <div>
+          <strong>¿Detectaste una de estas señales?</strong> Revisa la <a href="prevencion.html">lista de verificación</a> antes de actuar, o usa directamente el <a href="reporte.html">formulario de reporte</a> si ya confirmaste el incidente.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sitio-footer">
+    <div class="contenedor">
+      <p><strong>Aviso:</strong> este es un proyecto educativo (Aprendizaje Basado en Problemas — Ingeniería Web) y no reemplaza una denuncia oficial. Para denunciar, acude a la <a href="https://www.fiscalia.gov.co" target="_blank" rel="noopener">Fiscalía General de la Nación</a> o al <a href="https://www.ccp.gov.co" target="_blank" rel="noopener">Centro Cibernético Policial</a>.</p>
+      <p class="cita-legal">Basado en la Ley 1273 de 2009 (Delitos Informáticos) y la Ley 1581 de 2012 (Habeas Data), Colombia.</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
