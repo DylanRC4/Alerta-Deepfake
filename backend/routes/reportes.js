@@ -137,6 +137,11 @@ function validarReporte(body, tieneArchivo) {
 
 // POST /api/reportes -> registrar un nuevo reporte (con evidencia opcional: archivo o enlace)
 router.post('/', limitadorEnvio, subirArchivo, async (req, res) => {
+  // TEMPORAL: depurando por qué no llega el archivo. Quitar después.
+  console.log('[DEBUG] content-type recibido:', req.headers['content-type']);
+  console.log('[DEBUG] req.file:', req.file);
+  console.log('[DEBUG] req.body keys:', req.body ? Object.keys(req.body) : null);
+
   const archivoSubido = req.file || null;
   const errores = validarReporte(req.body || {}, Boolean(archivoSubido));
 
