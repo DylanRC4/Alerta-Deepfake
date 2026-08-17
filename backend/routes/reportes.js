@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const fsp = require('fs/promises');
 const crypto = require('crypto');
-const FileType = require('file-type');
+const { detectarTipoReal } = require('../utils/detectarTipoArchivo');
 const pool = require('../db');
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -148,8 +148,8 @@ router.post('/', limitadorEnvio, subirArchivo, async (req, res) => {
   // Verifica el CONTENIDO real del archivo (magic bytes), no solo la extensión declarada.
   if (archivoSubido) {
     try {
-      const tipoReal = await FileType.fromFile(archivoSubido.path);
-      if (!tipoReal || !MIME_A_EXTENSION[tipoReal.mime]) {
+      const mimeReal = await detectarTipoReal(archivoSubido.path);
+      if (!mimeReal || !MIME_A_EXTENSION[mimeReal]) {
         await borrarArchivoSiExiste(archivoSubido.path);
         return res.status(400).json({ error: 'El contenido del archivo no coincide con un tipo permitido.' });
       }

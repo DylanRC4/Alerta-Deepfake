@@ -127,9 +127,16 @@ Tres tablas (`db/init.sql`):
 - Carga de archivos de evidencia con múltiples capas de control: lista blanca de tipos
   MIME permitidos, límite de tamaño (15 MB), nombre de archivo aleatorio (no se usa el
   nombre original, evita path traversal), y verificación del **contenido real** del
-  archivo (magic bytes vía `file-type`), no solo su extensión o el tipo MIME declarado
-  por el navegador. Los archivos se guardan fuera del árbol de Git, en un volumen Docker
-  dedicado (`uploads_data`).
+  archivo (magic bytes), no solo su extensión o el tipo MIME declarado por el navegador.
+  La detección de magic bytes es una implementación propia (`backend/utils/detectarTipoArchivo.js`)
+  en vez de una librería genérica: se evaluó `file-type`, pero su versión compatible con
+  este proyecto tiene una vulnerabilidad de denegación de servicio conocida (bucle
+  infinito en su parser de ASF) sin parche disponible fuera de una versión ESM que
+  habría requerido migrar todo el backend. Como solo necesitamos reconocer 9 formatos
+  concretos, una verificación acotada y auditable es más segura que una dependencia
+  genérica con superficie de ataque innecesaria.
+  Los archivos se guardan fuera del árbol de Git, en un volumen Docker dedicado
+  (`uploads_data`).
 
 ## Limitaciones actuales
 
