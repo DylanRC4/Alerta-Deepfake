@@ -17,7 +17,10 @@
 
   <header class="sitio-header">
     <nav class="nav-barra" aria-label="Navegación principal">
-      <a class="marca" href="index.html">Alerta Deepfake<span>Proyecto ABP · Ingeniería Web</span></a>
+      <a class="marca" href="index.html">
+        <img class="logo-u" src="img/logoU.jpg" alt="Logo de la universidad" onerror="this.remove();">
+        <span class="marca-texto">Alerta Deepfake<span>Proyecto ABP · Ingeniería Web</span></span>
+      </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="menu-principal">Menú</button>
       <ul class="nav-lista" id="menu-principal">
         <li><a href="index.html">Inicio</a></li>
@@ -32,65 +35,106 @@
   </header>
 
   <main id="contenido">
-    <section class="hero">
-      <div class="contenedor">
-        <div class="hero-texto">
-          <h1>Panel de reportes</h1>
-          <p>Vista privada con los reportes registrados, su evidencia y estadísticas generales. Acceso restringido.</p>
-        </div>
-        <div class="sello" aria-hidden="true">Acceso<br>restringido</div>
-      </div>
-    </section>
+    <!-- ================= LOGIN ================= -->
+    <section id="panel-login" class="pantalla-login">
+      <div class="tarjeta-login">
+        <span class="login-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </span>
+        <span class="expediente-numero">Acceso restringido</span>
+        <h1>Panel de reportes</h1>
+        <p>Esta sección contiene datos personales de quienes reportaron casos. Requiere autenticación.</p>
 
-    <section class="contenedor" id="panel-login">
-      <div class="caso-simulado" style="max-width: 420px;">
-        <h2>Iniciar sesión</h2>
         <form id="formulario-login" class="formulario">
           <div class="campo">
-            <label for="panel-password">Contraseña del panel</label>
-            <input type="password" id="panel-password" name="password" autocomplete="current-password" required>
+            <label for="panel-password">Contraseña</label>
+            <input type="password" id="panel-password" name="password" autocomplete="current-password" required autofocus>
           </div>
-          <div>
-            <button type="submit" class="boton boton-outline">Entrar</button>
-          </div>
+          <button type="submit" class="boton boton-primario" id="btn-login">Entrar</button>
           <div id="login-error" class="mensaje-estado" role="alert"></div>
         </form>
+
+        <p class="login-pie">
+          <a href="index.html">← Volver al sitio</a>
+        </p>
       </div>
     </section>
 
-    <section class="contenedor" id="panel-dashboard" hidden>
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
-        <h2 style="margin:0;">Resumen</h2>
-        <button id="btn-logout" class="boton boton-outline">Cerrar sesión</button>
+    <!-- ================= PANEL ================= -->
+    <section id="panel-dashboard" hidden>
+      <!-- ---- Barra superior ---- -->
+      <div class="panel-barra">
+        <div class="contenedor">
+          <div>
+            <span class="expediente-numero">Panel de control</span>
+            <h1>Reportes recibidos</h1>
+          </div>
+          <div class="panel-barra-acciones">
+            <button id="btn-recargar" class="boton boton-secundario">Actualizar</button>
+            <button id="btn-logout" class="boton boton-secundario">Cerrar sesión</button>
+          </div>
+        </div>
       </div>
 
-      <div class="tarjetas" id="panel-stats" style="margin-top:1rem;"></div>
+      <div class="contenedor">
+        <!-- ---- Indicadores ---- -->
+        <div class="kpis" id="panel-stats"></div>
 
-      <h3 style="margin-top:2rem;">Reportes por categoría</h3>
-      <div class="tarjetas tarjetas-4" id="panel-stats-categoria"></div>
+        <!-- ---- Distribución ---- -->
+        <div class="panel-columnas">
+          <section class="panel-bloque" aria-labelledby="t-categoria">
+            <h2 id="t-categoria">Por tipo de caso</h2>
+            <div class="barras" id="panel-stats-categoria"></div>
+          </section>
 
-      <h3 style="margin-top:2rem;">Reportes por estado de revisión</h3>
-      <div class="tarjetas" id="panel-stats-estado"></div>
+          <section class="panel-bloque" aria-labelledby="t-estado">
+            <h2 id="t-estado">Por estado</h2>
+            <div class="barras" id="panel-stats-estado"></div>
+          </section>
+        </div>
 
-      <h3 style="margin-top:2rem;">Reportes registrados</h3>
-      <div style="overflow-x:auto;">
-        <table class="tabla-normativa" id="tabla-reportes">
-          <thead>
-            <tr>
-              <th scope="col">N.°</th>
-              <th scope="col">Fecha incidente</th>
-              <th scope="col">Persona afectada</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Categoría</th>
-              <th scope="col">Plataforma</th>
-              <th scope="col">Evidencia</th>
-              <th scope="col">Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td colspan="8">Cargando…</td></tr>
-          </tbody>
-        </table>
+        <!-- ---- Tabla ---- -->
+        <section class="panel-bloque" aria-labelledby="t-reportes">
+          <div class="panel-bloque-cabecera">
+            <h2 id="t-reportes">Listado</h2>
+            <span class="conteo-visible" id="conteo-visible" aria-live="polite"></span>
+          </div>
+
+          <div class="filtros">
+            <div class="filtro-busqueda">
+              <label for="buscar" class="visually-hidden">Buscar en los reportes</label>
+              <input type="search" id="buscar" placeholder="Buscar por nombre, correo, plataforma…" autocomplete="off">
+            </div>
+            <div class="filtro-chips" role="group" aria-label="Filtrar por estado">
+              <button class="chip activo" data-filtro-estado="todos">Todos</button>
+              <button class="chip" data-filtro-estado="Recibido">Recibidos</button>
+              <button class="chip" data-filtro-estado="En revisión">En revisión</button>
+              <button class="chip" data-filtro-estado="Cerrado">Cerrados</button>
+            </div>
+          </div>
+
+          <div class="tabla-envoltorio">
+            <table class="tabla-panel" id="tabla-reportes">
+              <thead>
+                <tr>
+                  <th scope="col">Exp.</th>
+                  <th scope="col">Incidente</th>
+                  <th scope="col">Persona afectada</th>
+                  <th scope="col">Tipo de caso</th>
+                  <th scope="col">Plataforma</th>
+                  <th scope="col">Evidencia</th>
+                  <th scope="col">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="7" class="celda-vacia">Cargando…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </section>
   </main>
