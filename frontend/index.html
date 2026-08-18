@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alerta Deepfake — Inicio</title>
-  <meta name="description" content="Sitio educativo para prevenir, identificar y reportar deepfakes, suplantación de identidad y vulneración de datos personales en Colombia.">
+  <meta name="description" content="Aprende a identificar, prevenir y reportar deepfakes, suplantación de identidad y vulneración de datos personales en Colombia.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -31,54 +31,149 @@
   </header>
 
   <main id="contenido">
-    <section class="hero">
+    <!-- ====== HÉROE ====== -->
+    <section class="hero hero-inicio">
       <div class="contenedor">
         <div class="hero-texto">
           <span class="expediente-numero">Expediente ABP · Ingeniería Web</span>
-          <h1>La misma tecnología que crea efectos de cine hoy también clona tu voz y tu rostro</h1>
-          <p>Sitio educativo para aprender a reconocer, prevenir y reportar deepfakes, suplantación de identidad y vulneración de datos personales, con base en el marco legal colombiano.</p>
-          <p>
-            <a class="boton boton-primario" href="tipologias.html">Conocer las tipologías</a>
-            <a class="boton boton-secundario" href="reporte.html">Reportar un caso</a>
+          <h1>Hoy se puede clonar tu voz con 3 segundos de audio</h1>
+          <p class="hero-entrada">La misma tecnología que crea efectos de cine se usa para suplantar identidades y estafar. Aquí aprendes a reconocerla, sabes qué hacer si te ocurre, y puedes dejar constancia del caso.</p>
+          <p class="hero-botones">
+            <a class="boton boton-primario" href="tipologias.html">Aprender a identificarlo</a>
+            <a class="boton boton-secundario" href="simulador.html">Poner a prueba mi criterio</a>
           </p>
-          <blockquote class="pregunta-orientadora">
-            <p>¿Cómo diseñar una solución web educativa, accesible y adaptable que permita prevenir, identificar y reportar posibles casos de deepfakes, suplantación de identidad y vulneración de datos personales?</p>
-          </blockquote>
         </div>
         <div class="sello" aria-hidden="true">Expediente<br>ABP · 2026</div>
       </div>
     </section>
 
-    <section class="contenedor">
-      <h2>El problema, en contexto</h2>
-      <p>La inteligencia artificial generativa —los mismos algoritmos que crean imágenes, voces y videos a partir de patrones aprendidos— también se usa para fabricar contenido falso casi indistinguible del real. Cuando ese contenido imita la identidad de una persona, hablamos de un <strong>deepfake</strong>: una herramienta cada vez más accesible para la suplantación, el fraude y la manipulación.</p>
-
-      <div class="tarjetas" style="margin-top: 1rem;">
-        <article class="tarjeta">
-          <h3>Víctimas</h3>
-          <p>Usuarios de internet expuestos a manipulación, estafas y suplantación de su identidad digital y biométrica.</p>
-        </article>
-        <article class="tarjeta">
-          <h3>Atacantes</h3>
-          <p>Personas que se valen de programas informáticos y modelos de IA para cometer delitos, suplantar identidades y capturar datos.</p>
-        </article>
+    <!-- ====== BANDA DE URGENCIA ====== -->
+    <aside class="banda-urgente" aria-label="Ayuda inmediata">
+      <div class="contenedor">
+        <div class="banda-urgente-texto">
+          <strong>¿Te está pasando ahora mismo?</strong>
+          <span>Si hay una transferencia en curso o te están presionando, corta la comunicación antes de verificar nada.</span>
+        </div>
+        <a class="boton boton-urgente" href="prevencion.html#ruta">Ver qué hacer, paso a paso</a>
       </div>
+    </aside>
+
+    <!-- ====== RUTAS POR INTENCIÓN ====== -->
+    <section class="contenedor" aria-labelledby="titulo-rutas">
+      <h2 id="titulo-rutas">¿Con qué necesitas ayuda?</h2>
+      <p>Elige por dónde empezar según tu situación.</p>
+
+      <ul class="rutas">
+        <li data-revelar>
+          <a href="tipologias.html">
+            <span class="ruta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+              </svg>
+            </span>
+            <h3>Quiero saber si esto es falso</h3>
+            <p>Las cuatro formas de suplantación con IA, con las señales concretas que delatan cada una.</p>
+            <span class="ruta-enlace">Ver las tipologías →</span>
+          </a>
+        </li>
+
+        <li data-revelar>
+          <a href="prevencion.html">
+            <span class="ruta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+              </svg>
+            </span>
+            <h3>Ya me pasó, ¿qué hago?</h3>
+            <p>La ruta de actuación paso a paso y los artículos de la ley colombiana que te respaldan.</p>
+            <span class="ruta-enlace">Ver la ruta de actuación →</span>
+          </a>
+        </li>
+
+        <li data-revelar>
+          <a href="reporte.html">
+            <span class="ruta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3-3 3 3"/>
+              </svg>
+            </span>
+            <h3>Quiero dejar constancia</h3>
+            <p>Registra el caso con su evidencia. Queda documentado con fecha y número de expediente.</p>
+            <span class="ruta-enlace">Reportar un caso →</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
-    <section class="contenedor">
-      <h2>¿Qué es la inteligencia artificial generativa?</h2>
-      <p>Es una familia de algoritmos entrenados con enormes cantidades de imágenes, audios y videos reales. A partir de esos patrones, pueden generar contenido nuevo: una voz que nunca se grabó, un rostro que no existe, o un video de alguien diciendo algo que nunca dijo.</p>
-      <p>Usada de forma legítima, esta tecnología impulsa el cine, los videojuegos y la accesibilidad (por ejemplo, voces sintéticas para personas con discapacidad del habla). El problema no es la tecnología en sí, sino su uso malicioso para <strong>suplantar identidades biométricas</strong> sin consentimiento.</p>
-    </section>
-
-    <section class="contenedor">
-      <h2>El bien jurídico protegido: tu información y tus datos</h2>
-      <p>La legislación colombiana protege especialmente los <strong>datos biométricos</strong> —tu voz y tu rostro— frente a usos no autorizados con inteligencia artificial. Estos datos identifican quién eres de forma única, y por eso su vulneración tiene un tratamiento legal específico.</p>
-      <div class="aviso">
-        <div>
-          <strong>Dato clave:</strong> según cifras del sector, la suplantación de identidad reportada en Colombia pasó de 333 casos en 2019 a 1.527 en 2020 — un crecimiento del 409% en un solo año.
+    <!-- ====== CIFRA DESTACADA ====== -->
+    <section class="banda-cifra" aria-labelledby="titulo-cifra">
+      <div class="contenedor">
+        <div class="cifra-bloque">
+          <span class="cifra-valor">333</span>
+          <span class="cifra-etiqueta">casos en 2019</span>
+        </div>
+        <div class="cifra-flecha" aria-hidden="true">
+          <svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12h42"/><path d="m36 4 8 8-8 8"/>
+          </svg>
+        </div>
+        <div class="cifra-bloque cifra-destacada">
+          <span class="cifra-valor">1.527</span>
+          <span class="cifra-etiqueta">casos en 2020</span>
+        </div>
+        <div class="cifra-texto">
+          <h2 id="titulo-cifra">Un crecimiento del 409% en un solo año</h2>
+          <p>Casos de suplantación de identidad reportados en Colombia, según cifras del sector. El salto coincide con la llegada de herramientas de IA generativa al alcance de cualquiera.</p>
         </div>
       </div>
+    </section>
+
+    <!-- ====== EL PROBLEMA ====== -->
+    <section class="contenedor">
+      <h2>Qué está pasando</h2>
+      <p class="parrafo-guia">La inteligencia artificial generativa aprende patrones de imágenes, voces y videos reales para crear contenido nuevo. Usada bien, impulsa el cine, los videojuegos y la accesibilidad. Usada mal, fabrica una versión falsa de ti que puede engañar a tu propia familia.</p>
+
+      <div class="tarjetas" style="margin-top: var(--space-3);">
+        <article class="tarjeta">
+          <h3>Quién resulta afectado</h3>
+          <p>Cualquier persona con presencia digital. Basta un video público, una nota de voz reenviada o una foto de perfil para tener material suficiente.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Por qué creció tan rápido</h3>
+          <p>Antes se necesitaba un equipo técnico y mucho material. Hoy existen aplicaciones que lo hacen en minutos, sin conocimientos previos y a bajo costo.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====== POR QUÉ IMPORTA LEGALMENTE ====== -->
+    <section class="contenedor">
+      <h2>Tu voz y tu rostro son datos protegidos</h2>
+      <p class="parrafo-guia">Los datos biométricos —lo que te identifica de forma única— tienen protección legal específica en Colombia. Suplantarlos sin consentimiento no es solo un engaño: es un delito tipificado.</p>
+
+      <div class="tarjetas">
+        <article class="tarjeta tarjeta-ley">
+          <span class="expediente-numero">Ley 1273 de 2009</span>
+          <h3>Delitos informáticos</h3>
+          <p>Incorporó al Código Penal la protección de la información y los datos como bien jurídico propio, con penas de prisión definidas.</p>
+          <a class="ruta-enlace" href="prevencion.html">Ver los artículos aplicables →</a>
+        </article>
+        <article class="tarjeta tarjeta-ley">
+          <span class="expediente-numero">Ley 1581 de 2012</span>
+          <h3>Habeas Data</h3>
+          <p>Regula el tratamiento de datos personales sensibles, categoría que incluye expresamente los datos biométricos.</p>
+          <a class="ruta-enlace" href="prevencion.html">Ver el marco legal →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====== PREGUNTA ORIENTADORA (académico) ====== -->
+    <section class="contenedor">
+      <blockquote class="pregunta-orientadora pregunta-destacada">
+        <span class="expediente-numero">Pregunta orientadora del proyecto</span>
+        <p>¿Cómo diseñar una solución web educativa, accesible y adaptable que permita prevenir, identificar y reportar posibles casos de deepfakes, suplantación de identidad y vulneración de datos personales?</p>
+        <footer><a href="acerca.html">Ver cómo se respondió, técnicamente →</a></footer>
+      </blockquote>
     </section>
   </main>
 
