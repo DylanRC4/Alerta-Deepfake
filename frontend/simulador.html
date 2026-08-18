@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alerta Deepfake — Simulador</title>
-  <meta name="description" content="Casos simulados interactivos para entrenarte en la detección de deepfakes y suplantación de identidad.">
+  <meta name="description" content="Entrena tu criterio con casos reales: decide si cada situación es un intento de suplantación o es legítima, y recibe retroalimentación inmediata.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,31 +34,66 @@
     <section class="hero">
       <div class="contenedor">
         <div class="hero-texto">
+          <span class="expediente-numero">Modo entrenamiento</span>
           <h1>Pon a prueba tu criterio</h1>
-          <p>Lee cada situación y decide: ¿es un intento de suplantación o es legítimo? Recibirás retroalimentación inmediata con las señales clave.</p>
+          <p>Seis situaciones reales. En cada una decides si hay un intento de suplantación o si es legítima. Ojo: no todas son fraudes — desconfiar de todo también es un error.</p>
         </div>
-        <div class="sello" aria-hidden="true">Modo<br>entrenamiento</div>
+        <div class="sello" aria-hidden="true">6 casos<br>por resolver</div>
       </div>
     </section>
 
-    <section id="simulador" class="contenedor" aria-label="Simulador de casos">
-      <p class="progreso-simulador" id="progreso-simulador" aria-live="polite"></p>
-      <div class="caso-simulado">
-        <h2 class="visually-hidden">Situación a evaluar</h2>
-        <p id="caso-contexto"></p>
+    <section id="simulador" class="contenedor" aria-labelledby="titulo-simulador">
+      <h2 id="titulo-simulador" class="visually-hidden">Simulador de casos</h2>
+
+      <!-- ===== Barra de progreso y marcador ===== -->
+      <div class="simulador-estado">
+        <div class="progreso-envoltorio">
+          <div class="progreso-cabecera">
+            <span class="progreso-texto" id="progreso-simulador" aria-live="polite">Caso 1 de 6</span>
+            <span class="marcador" id="marcador">0 aciertos</span>
+          </div>
+          <div class="progreso-barra" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" aria-label="Progreso del simulador" id="barra-progreso">
+            <div class="progreso-relleno" id="progreso-relleno"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Tarjeta del caso ===== -->
+      <div class="caso-simulado" id="caso-activo">
+        <span class="caso-etiqueta" id="caso-canal">Mensaje recibido</span>
+        <p class="caso-contexto" id="caso-contexto"></p>
+
+        <p class="caso-pregunta">¿Qué crees que es?</p>
         <div class="caso-opciones">
-          <button class="boton boton-primario" data-respuesta="falso">Es un intento de suplantación</button>
+          <button class="boton boton-primario" data-respuesta="falso">Intento de suplantación</button>
           <button class="boton boton-outline" data-respuesta="real">Es legítimo</button>
         </div>
+
         <div id="caso-retro" class="caso-retro" role="status" aria-live="polite"></div>
-        <button id="siguiente-caso" class="boton boton-outline" style="margin-top:1rem;" hidden>Siguiente caso →</button>
+
+        <div class="caso-navegacion">
+          <button id="siguiente-caso" class="boton boton-primario" hidden>Siguiente caso →</button>
+        </div>
+      </div>
+
+      <!-- ===== Pantalla de resultados ===== -->
+      <div class="resultado-final" id="resultado-final" hidden tabindex="-1">
+        <span class="expediente-numero">Entrenamiento completado</span>
+        <p class="resultado-puntaje"><span id="resultado-aciertos">0</span> <span class="resultado-total">de 6</span></p>
+        <h2 id="resultado-titulo">—</h2>
+        <p id="resultado-mensaje"></p>
+
+        <div class="resultado-acciones">
+          <button id="reiniciar" class="boton boton-outline">Intentar de nuevo</button>
+          <a class="boton boton-primario" href="tipologias.html">Repasar las señales</a>
+        </div>
       </div>
     </section>
 
     <section class="contenedor">
       <div class="aviso" role="note">
         <div>
-          <strong>Recuerda:</strong> este simulador es una herramienta de entrenamiento con casos ilustrativos. Ante una duda real, sigue la <a href="prevencion.html">ruta de actuación</a> y verifica siempre por un canal alterno.
+          <strong>Recuerda:</strong> estos casos son ilustrativos y construidos con fines educativos. Ante una duda real, sigue la <a href="prevencion.html#ruta">ruta de actuación</a> y verifica siempre por un canal alterno.
         </div>
       </div>
     </section>
@@ -71,5 +106,6 @@
     </div>
   </footer>
   <script src="js/main.js"></script>
+  <script src="js/simulador.js"></script>
 </body>
 </html>
