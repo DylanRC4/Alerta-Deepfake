@@ -14,6 +14,9 @@
   --color-accent: #D9A64A;
   --color-stamp-red: #A3291E;
   --color-stamp-amber: #B87F1F;
+  /* Variante oscura del ámbar: la clara no alcanza contraste AA con texto
+     blanco encima (3.45:1). Esta sí (4.72:1). */
+  --color-stamp-amber-oscuro: #9A6A19;
   --color-stamp-green: #2F6F4E;
   --color-border: #D8DEE9;
 
@@ -436,15 +439,16 @@ textarea { min-height: 7rem; resize: vertical; }
 
 .foto-desarrollador {
   flex: 0 0 auto;
-  width: 140px;
-  height: 140px;
+  width: 210px;
+  height: 260px;
   position: relative;
 }
 .foto-desarrollador img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  object-position: center top;
+  border-radius: var(--radius);
   border: 3px solid var(--color-primary);
 }
 /* Marcador visible solo si la foto no existe todavía */
@@ -452,7 +456,7 @@ textarea { min-height: 7rem; resize: vertical; }
   display: none;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: var(--radius);
   border: 3px dashed var(--color-border);
   align-items: center;
   justify-content: center;
@@ -497,3 +501,214 @@ code {
 }
 .tarjeta ul { margin: 0; padding-left: 1.1rem; color: var(--color-ink-soft); }
 .tarjeta li { margin-bottom: 0.35rem; }
+
+/* =========================================================
+   TIPOLOGÍAS — Guía educativa
+   ========================================================= */
+
+/* ---------- Selector rápido de entrada ---------- */
+.selector-rapido {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px) { .selector-rapido { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .selector-rapido { grid-template-columns: repeat(4, 1fr); } }
+
+.selector-rapido a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.selector-rapido a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(16, 24, 43, 0.1);
+  border-top-color: var(--color-accent);
+  color: var(--color-ink);
+}
+.selector-icono {
+  width: 2.2rem;
+  height: 2.2rem;
+  color: var(--color-primary);
+}
+.selector-icono svg { width: 100%; height: 100%; }
+.selector-rapido strong { font-size: 1.02rem; }
+.selector-pista {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-ink-soft);
+  line-height: 1.4;
+}
+
+/* ---------- Expediente (ficha de tipología) ---------- */
+.expediente {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+/* El foco de destino al saltar desde el selector no debe dibujar un borde feo */
+section[id^="expediente-"]:focus { outline: none; }
+section[id^="expediente-"] { scroll-margin-top: 5rem; }
+
+.expediente-cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-ink);
+  border-bottom: 3px solid var(--color-accent);
+}
+.expediente-cabecera h2 {
+  color: #fff;
+  margin: 0;
+  flex: 1 1 auto;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+.expediente-cabecera .expediente-numero {
+  margin: 0;
+  color: var(--color-accent);
+  width: 100%;
+}
+.expediente-cabecera .riesgo { margin: 0; background: rgba(255,255,255,0.07); }
+.expediente-cabecera .riesgo-alto { color: #FF9A8F; }
+.expediente-cabecera .riesgo-medio { color: #FFD08A; }
+
+.expediente-cuerpo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+@media (min-width: 900px) {
+  .expediente-cuerpo { grid-template-columns: 320px 1fr; gap: var(--space-4); }
+}
+
+/* ---------- Figura ilustrativa ---------- */
+.expediente-figura { margin: 0; }
+.expediente-figura img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+.expediente-figura figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  margin-top: 0.5rem;
+  padding-left: 0.6rem;
+  border-left: 2px solid var(--color-accent);
+}
+/* Si la imagen aún no existe, se oculta el hueco roto y queda solo el texto */
+.expediente-figura.sin-imagen img { display: none; }
+.expediente-figura.sin-imagen figcaption { margin-top: 0; }
+
+.expediente-contenido h3 {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-top: var(--space-3);
+  margin-bottom: 0.5rem;
+}
+.expediente-contenido > h3:first-child { margin-top: 0; }
+
+/* ---------- Señales numeradas ---------- */
+.senales {
+  list-style: none;
+  counter-reset: senal;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.senales li {
+  counter-increment: senal;
+  position: relative;
+  padding: 0.7rem 0.9rem 0.7rem 3rem;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--color-stamp-amber);
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+}
+.senales li::before {
+  content: counter(senal);
+  position: absolute;
+  left: 0.75rem;
+  top: 0.7rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: var(--color-stamp-amber-oscuro);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.senales strong { color: var(--color-ink); }
+
+/* ---------- Caso típico y qué hacer ---------- */
+.caso-tipico {
+  margin-top: var(--space-3);
+  padding: var(--space-2);
+  background: #FCF3E1;
+  border: 1px dashed var(--color-accent);
+  border-radius: var(--radius);
+}
+.caso-tipico p { margin: 0; font-style: italic; }
+
+.que-hacer {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  background: #E9F2EC;
+  border-left: 4px solid var(--color-stamp-green);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.que-hacer h3 { margin-top: 0; color: var(--color-stamp-green); }
+.que-hacer p { margin: 0; }
+.que-hacer strong { color: var(--color-stamp-green); }
+
+/* ---------- Acciones de cierre ---------- */
+.cierre-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+/* ---------- Aparición progresiva al desplazarse ----------
+   El contenido es visible por defecto. La animación solo se activa si JS
+   confirma que puede ejecutarla (clase .js en <html>), para que el texto
+   nunca quede invisible si el script falla o está desactivado. */
+.js [data-revelar] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.js [data-revelar].visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-revelar] { opacity: 1; transform: none; transition: none; }
+}

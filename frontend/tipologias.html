@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alerta Deepfake — Tipologías</title>
-  <meta name="description" content="Clasificación de los tipos de deepfake: clonación de voz, generación de rostro, video falso y perfiles falsos, con señales de detección.">
+  <meta name="description" content="Aprende a identificar los cuatro tipos de suplantación con IA: clonación de voz, generación de rostro, video falso y perfiles falsos. Señales concretas, casos reales y qué hacer en cada uno.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,74 +34,250 @@
     <section class="hero">
       <div class="contenedor">
         <div class="hero-texto">
-          <h1>Cuatro formas de suplantar tu identidad con IA</h1>
-          <p>Cada tipología corresponde a una categoría del catálogo usado en el formulario de reporte. Conocerlas es el primer paso para identificarlas.</p>
+          <span class="expediente-numero">Guía de identificación</span>
+          <h1>Aprende a reconocer las cuatro formas de suplantación con IA</h1>
+          <p>Cada tipo deja rastros distintos. Aquí verás qué mirar, qué escuchar y qué preguntar para distinguir lo real de lo fabricado.</p>
         </div>
         <div class="sello" aria-hidden="true">4 tipos<br>de caso</div>
       </div>
     </section>
 
-    <section class="contenedor">
-      <div class="tarjetas tarjetas-4">
-        <article class="tarjeta">
-          <span class="expediente-numero">Expediente 01</span>
-          <span class="riesgo riesgo-alto">Riesgo alto</span>
-          <h3>Clonación de voz</h3>
-          <p>Recrea el timbre y la entonación de una persona a partir de pocos segundos de audio real, usada en llamadas o notas de voz para pedir dinero o información.</p>
-          <h4>Señales de alerta</h4>
-          <ul>
-            <li>Urgencia extrema y presión para no colgar.</li>
-            <li>Se evita o rechaza una videollamada de verificación.</li>
-            <li>Ligeras distorsiones metálicas o pausas poco naturales.</li>
-          </ul>
-        </article>
-
-        <article class="tarjeta">
-          <span class="expediente-numero">Expediente 02</span>
-          <span class="riesgo riesgo-medio">Riesgo medio</span>
-          <h3>Generación de rostro (imágenes)</h3>
-          <p>Crea o altera fotografías de un rostro para perfiles falsos, montajes o material fraudulento.</p>
-          <h4>Señales de alerta</h4>
-          <ul>
-            <li>Asimetrías en orejas, dientes o manos.</li>
-            <li>Fondo borroso o inconsistente con la iluminación del rostro.</li>
-            <li>Pocas fotos disponibles de la misma persona en otros ángulos.</li>
-          </ul>
-        </article>
-
-        <article class="tarjeta">
-          <span class="expediente-numero">Expediente 03</span>
-          <span class="riesgo riesgo-alto">Riesgo alto</span>
-          <h3>Video falso (deepfake)</h3>
-          <p>Sustituye el rostro o genera un video completo de una persona diciendo o haciendo algo que nunca ocurrió.</p>
-          <h4>Señales de alerta</h4>
-          <ul>
-            <li>Parpadeo irregular o ausencia de parpadeo.</li>
-            <li>Desincronización entre labios y audio.</li>
-            <li>Bordes difusos alrededor del rostro o el cabello.</li>
-          </ul>
-        </article>
-
-        <article class="tarjeta">
-          <span class="expediente-numero">Expediente 04</span>
-          <span class="riesgo riesgo-medio">Riesgo medio</span>
-          <h3>Creación de perfil falso</h3>
-          <p>Combina foto generada, biografía inventada y actividad artificial para simular una identidad real en redes sociales.</p>
-          <h4>Señales de alerta</h4>
-          <ul>
-            <li>Cuenta creada recientemente con actividad reciente masiva.</li>
-            <li>Seguidores desproporcionados frente a la interacción real.</li>
-            <li>Ofertas de dinero, empleo o inversión no solicitadas.</li>
-          </ul>
-        </article>
-      </div>
+    <!-- ====== ENTRADA RÁPIDA: qué recibiste ====== -->
+    <section class="contenedor" aria-labelledby="titulo-selector">
+      <h2 id="titulo-selector">¿Qué te llegó?</h2>
+      <p>Empieza por lo que recibiste y ve directo a las señales que debes revisar.</p>
+      <ul class="selector-rapido">
+        <li>
+          <a href="#expediente-01">
+            <span class="selector-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/>
+              </svg>
+            </span>
+            <strong>Un audio o llamada</strong>
+            <span class="selector-pista">Una voz conocida pidiendo algo</span>
+          </a>
+        </li>
+        <li>
+          <a href="#expediente-02">
+            <span class="selector-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+              </svg>
+            </span>
+            <strong>Una foto</strong>
+            <span class="selector-pista">Una imagen que no cuadra</span>
+          </a>
+        </li>
+        <li>
+          <a href="#expediente-03">
+            <span class="selector-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+              </svg>
+            </span>
+            <strong>Un video</strong>
+            <span class="selector-pista">Alguien diciendo algo extraño</span>
+          </a>
+        </li>
+        <li>
+          <a href="#expediente-04">
+            <span class="selector-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            <strong>Un mensaje de un perfil</strong>
+            <span class="selector-pista">Una cuenta que no conoces</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
+    <!-- ====== EXPEDIENTE 01 — CLONACIÓN DE VOZ ====== -->
+    <section class="contenedor" id="expediente-01" aria-labelledby="titulo-exp-01" tabindex="-1">
+      <article class="expediente" data-revelar>
+        <header class="expediente-cabecera">
+          <span class="expediente-numero">Expediente 01</span>
+          <h2 id="titulo-exp-01">Clonación de voz</h2>
+          <span class="riesgo riesgo-alto">Riesgo alto</span>
+        </header>
+
+        <div class="expediente-cuerpo">
+          <figure class="expediente-figura">
+            <img src="img/tipologia-voz.jpg" alt="Ilustración de una llamada telefónica sospechosa con una voz clonada"
+                 loading="lazy" onerror="this.closest('.expediente-figura').classList.add('sin-imagen');">
+            <figcaption>Bastan unos segundos de tu voz —una historia, una nota de audio— para clonarla.</figcaption>
+          </figure>
+
+          <div class="expediente-contenido">
+            <h3>Cómo funciona</h3>
+            <p>Un modelo de IA aprende el timbre, el acento y la entonación de una persona a partir de muy poco audio real, muchas veces tomado de redes sociales. Con eso genera frases nuevas que esa persona nunca dijo.</p>
+
+            <h3>Señales de alerta</h3>
+            <ol class="senales">
+              <li><strong>Urgencia extrema.</strong> Te presionan para actuar ya: "estoy en un accidente", "necesito el dinero ahora". La prisa existe para que no verifiques.</li>
+              <li><strong>Evitan la videollamada.</strong> Siempre hay una excusa: se quedó sin batería, está en un lugar sin señal, no puede mostrar la cara.</li>
+              <li><strong>Ritmo antinatural.</strong> Pausas en lugares raros, entonación plana al final de las frases, o un leve tono metálico.</li>
+              <li><strong>No responde a lo imprevisto.</strong> Si preguntas algo que no esperaba, la respuesta llega lenta, genérica o cambia de tema.</li>
+            </ol>
+
+            <div class="caso-tipico">
+              <span class="expediente-numero">Caso típico</span>
+              <p>Recibes una nota de voz de un familiar: tuvo un accidente, está detenido, necesita una transferencia urgente. La voz es idéntica. Insiste en que no llames a nadie más.</p>
+            </div>
+
+            <div class="que-hacer">
+              <h3>Qué hacer</h3>
+              <p><strong>Cuelga y llama tú.</strong> Marca al número que ya tienes guardado, no al que te contactó. Pregunta algo que solo esa persona sabría y que no esté en sus redes.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ====== EXPEDIENTE 02 — GENERACIÓN DE ROSTRO ====== -->
+    <section class="contenedor" id="expediente-02" aria-labelledby="titulo-exp-02" tabindex="-1">
+      <article class="expediente" data-revelar>
+        <header class="expediente-cabecera">
+          <span class="expediente-numero">Expediente 02</span>
+          <h2 id="titulo-exp-02">Generación de rostro (imágenes)</h2>
+          <span class="riesgo riesgo-medio">Riesgo medio</span>
+        </header>
+
+        <div class="expediente-cuerpo">
+          <figure class="expediente-figura">
+            <img src="img/tipologia-rostro.jpg" alt="Ilustración de un rostro generado por inteligencia artificial con inconsistencias"
+                 loading="lazy" onerror="this.closest('.expediente-figura').classList.add('sin-imagen');">
+            <figcaption>Los rostros generados fallan en los detalles pequeños: orejas, dientes y manos.</figcaption>
+          </figure>
+
+          <div class="expediente-contenido">
+            <h3>Cómo funciona</h3>
+            <p>La IA crea rostros de personas que no existen, o modifica fotos reales. Se usan para perfiles falsos, montajes y fraudes. La cara principal suele verse convincente; los detalles secundarios no.</p>
+
+            <h3>Señales de alerta</h3>
+            <ol class="senales">
+              <li><strong>Asimetrías en los detalles.</strong> Aretes distintos entre una oreja y otra, dientes irregulares, dedos de más o de menos.</li>
+              <li><strong>Fondo inconsistente.</strong> Texto borroso o sin sentido, líneas rectas que se doblan, iluminación del fondo que no coincide con la del rostro.</li>
+              <li><strong>Accesorios que se deforman.</strong> Las gafas suelen tener patillas desalineadas o marcos que se funden con la piel.</li>
+              <li><strong>Solo existe esa foto.</strong> No hay más imágenes de esa persona en otros ángulos, épocas o contextos.</li>
+            </ol>
+
+            <div class="caso-tipico">
+              <span class="expediente-numero">Caso típico</span>
+              <p>Una cuenta te escribe con una foto de perfil impecable, casi de estudio. Al ampliarla, un arete aparece solo en una oreja y el texto del fondo es ilegible.</p>
+            </div>
+
+            <div class="que-hacer">
+              <h3>Qué hacer</h3>
+              <p><strong>Haz una búsqueda inversa de la imagen.</strong> Si no aparece en ningún otro lugar de internet, o aparece con otro nombre distinto, es una señal fuerte.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ====== EXPEDIENTE 03 — VIDEO FALSO ====== -->
+    <section class="contenedor" id="expediente-03" aria-labelledby="titulo-exp-03" tabindex="-1">
+      <article class="expediente" data-revelar>
+        <header class="expediente-cabecera">
+          <span class="expediente-numero">Expediente 03</span>
+          <h2 id="titulo-exp-03">Video falso (deepfake)</h2>
+          <span class="riesgo riesgo-alto">Riesgo alto</span>
+        </header>
+
+        <div class="expediente-cuerpo">
+          <figure class="expediente-figura">
+            <img src="img/tipologia-video.jpg" alt="Ilustración de un video manipulado donde el rostro fue sustituido"
+                 loading="lazy" onerror="this.closest('.expediente-figura').classList.add('sin-imagen');">
+            <figcaption>El rostro se sustituye cuadro por cuadro; los bordes y el parpadeo delatan la manipulación.</figcaption>
+          </figure>
+
+          <div class="expediente-contenido">
+            <h3>Cómo funciona</h3>
+            <p>El rostro de una persona se sustituye sobre el cuerpo de otra, o se genera un video completo. Como se construye cuadro por cuadro, los errores aparecen en el movimiento, no en una imagen fija.</p>
+
+            <h3>Señales de alerta</h3>
+            <ol class="senales">
+              <li><strong>Parpadeo irregular.</strong> Parpadea muy poco, demasiado seguido, o de forma mecánica.</li>
+              <li><strong>Labios fuera de sincronía.</strong> El audio se adelanta o se atrasa, sobre todo en consonantes fuertes como la P, la B y la M.</li>
+              <li><strong>Bordes difusos.</strong> Mira el contorno del rostro y el nacimiento del cabello: puede verse un halo o un salto de textura.</li>
+              <li><strong>El cuello y el rostro no combinan.</strong> Diferencia de tono de piel o de iluminación entre la cara y el resto del cuerpo.</li>
+              <li><strong>No hay canal oficial.</strong> Si es una figura pública, ningún medio serio ni su cuenta verificada lo reportan.</li>
+            </ol>
+
+            <div class="caso-tipico">
+              <span class="expediente-numero">Caso típico</span>
+              <p>Circula un video de una figura reconocida anunciando una inversión con ganancias garantizadas. Solo se comparte por cadenas de mensajería, nunca por medios oficiales.</p>
+            </div>
+
+            <div class="que-hacer">
+              <h3>Qué hacer</h3>
+              <p><strong>Búscalo en canales oficiales antes de compartirlo.</strong> Si una noticia así fuera cierta, no circularía solo por WhatsApp. Reproduce el video a menor velocidad: los fallos se vuelven evidentes.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ====== EXPEDIENTE 04 — PERFIL FALSO ====== -->
+    <section class="contenedor" id="expediente-04" aria-labelledby="titulo-exp-04" tabindex="-1">
+      <article class="expediente" data-revelar>
+        <header class="expediente-cabecera">
+          <span class="expediente-numero">Expediente 04</span>
+          <h2 id="titulo-exp-04">Creación de perfil falso</h2>
+          <span class="riesgo riesgo-medio">Riesgo medio</span>
+        </header>
+
+        <div class="expediente-cuerpo">
+          <figure class="expediente-figura">
+            <img src="img/tipologia-perfil.jpg" alt="Ilustración de un perfil falso en redes sociales con actividad artificial"
+                 loading="lazy" onerror="this.closest('.expediente-figura').classList.add('sin-imagen');">
+            <figcaption>Foto generada, biografía inventada y seguidores comprados: una identidad completa que no existe.</figcaption>
+          </figure>
+
+          <div class="expediente-contenido">
+            <h3>Cómo funciona</h3>
+            <p>Se combina un rostro generado por IA con una biografía inventada y actividad artificial para simular una persona real. El objetivo casi siempre es ganar confianza antes de pedir dinero o datos.</p>
+
+            <h3>Señales de alerta</h3>
+            <ol class="senales">
+              <li><strong>Cuenta reciente, actividad masiva.</strong> Creada hace semanas pero con cientos de publicaciones subidas de golpe.</li>
+              <li><strong>Seguidores que no interactúan.</strong> Miles de seguidores y apenas unos pocos comentarios reales por publicación.</li>
+              <li><strong>Historia demasiado perfecta.</strong> Profesión llamativa, viajes, éxito económico, y ninguna foto cotidiana o espontánea.</li>
+              <li><strong>Apuro por salir de la plataforma.</strong> Insisten en pasar rápido a un chat privado donde nadie los modera.</li>
+              <li><strong>Propuesta económica no solicitada.</strong> Inversión, criptomonedas, empleo o herencia que llegan sin que los buscaras.</li>
+            </ol>
+
+            <div class="caso-tipico">
+              <span class="expediente-numero">Caso típico</span>
+              <p>Un perfil creado hace dos semanas te escribe ofreciéndote una inversión con "rentabilidad garantizada". Tiene 8.000 seguidores, pero sus publicaciones apenas reciben dos comentarios.</p>
+            </div>
+
+            <div class="que-hacer">
+              <h3>Qué hacer</h3>
+              <p><strong>Revisa la fecha de creación y la coherencia del historial.</strong> No sigas la conversación fuera de la plataforma y no envíes dinero ni datos personales. Repórtalo en la red social.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ====== CIERRE ====== -->
     <section class="contenedor">
       <div class="aviso" role="note">
         <div>
-          <strong>¿Detectaste una de estas señales?</strong> Revisa la <a href="prevencion.html">lista de verificación</a> antes de actuar, o usa directamente el <a href="reporte.html">formulario de reporte</a> si ya confirmaste el incidente.
+          <strong>Una advertencia importante:</strong> estas señales ayudan, pero la tecnología mejora rápido y cada vez deja menos rastros. La verificación por un canal alterno —llamar al número que ya tienes, confirmar en una fuente oficial— sigue siendo más confiable que cualquier detalle visual.
         </div>
+      </div>
+
+      <div class="cierre-acciones">
+        <a class="boton boton-primario" href="simulador.html">Poner a prueba lo aprendido</a>
+        <a class="boton boton-outline" href="prevencion.html">Ver la ruta de actuación</a>
+        <a class="boton boton-outline" href="reporte.html">Reportar un caso</a>
       </div>
     </section>
   </main>

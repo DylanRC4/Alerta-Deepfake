@@ -3,6 +3,30 @@
 // Cada bloque solo se activa si el elemento existe en la página.
 // ============================================================
 
+// ---------- Aparición progresiva de secciones ----------
+// Se marca <html> como "js" para que el CSS active la animación solo cuando
+// este script realmente corre: si falla, el contenido queda visible igual.
+(function revelarAlDesplazar() {
+  const elementos = document.querySelectorAll('[data-revelar]');
+  if (elementos.length === 0) return;
+
+  const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefiereMenosMovimiento || !('IntersectionObserver' in window)) return;
+
+  document.documentElement.classList.add('js');
+
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach((entrada) => {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add('visible');
+        observador.unobserve(entrada.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+  elementos.forEach((el) => observador.observe(el));
+})();
+
 // ---------- Menú móvil accesible ----------
 const navToggle = document.querySelector('.nav-toggle');
 const navLista = document.querySelector('.nav-lista');

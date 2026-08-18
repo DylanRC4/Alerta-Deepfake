@@ -1,8 +1,51 @@
-Coloca aquí tu foto de perfil con el nombre exacto:
+IMÁGENES DEL SITIO
+==================
 
-    dylan.jpg
+Coloca aquí las imágenes con estos nombres EXACTOS.
+Si alguna falta, la página no se rompe: simplemente oculta el hueco y
+deja el texto explicativo. Puedes ir agregándolas de a poco.
 
-(también sirve dylan.png si cambias la extensión en acerca.html, línea del <img>)
 
-Recomendación: foto cuadrada, mínimo 400x400 px, menos de 500 KB.
-Si el archivo no existe, la página muestra un marcador de posición con tus iniciales.
+1. FOTO DEL DESARROLLADOR (página "Acerca de")
+   Nombre: dylan.jpeg          [YA ESTÁ PUESTA]
+   Formato vertical o cuadrado. Se recorta centrada en la parte superior.
+
+
+2. ILUSTRACIONES DE TIPOLOGÍAS (página "Tipologías")
+   Formato horizontal, proporción 4:3 aproximadamente (ej. 800x600 px).
+   Máximo 300 KB cada una para que la página cargue rápido.
+
+   tipologia-voz.jpg      -> Expediente 01 · Clonación de voz
+                             Ideas: alguien atendiendo una llamada con gesto
+                             de preocupación, un teléfono con llamada entrante
+                             de número desconocido, ondas de audio.
+
+   tipologia-rostro.jpg   -> Expediente 02 · Generación de rostro
+                             Ideas: retrato con aspecto artificial, cuadrícula
+                             sobre un rostro, comparación de dos caras.
+
+   tipologia-video.jpg    -> Expediente 03 · Video falso
+                             Ideas: pantalla reproduciendo un video, rostro con
+                             efecto de distorsión digital, franjas de glitch.
+
+   tipologia-perfil.jpg   -> Expediente 04 · Perfil falso
+                             Ideas: pantalla de red social, perfil genérico,
+                             muchos seguidores sin interacción.
+
+
+DÓNDE CONSEGUIRLAS (gratis y de uso libre)
+------------------------------------------
+   unsplash.com     — fotos, licencia libre, no requiere atribución
+   pexels.com       — fotos y video, licencia libre
+   undraw.co        — ilustraciones vectoriales, permiten cambiar el color
+                      (usa el azul #1B3A6B para que combine con el sitio)
+   storyset.com     — ilustraciones editables
+
+
+IMPORTANTE
+----------
+   Evita fotos donde se reconozca el rostro de una persona real
+   identificable: la página trata sobre suplantación de identidad, y
+   asociar la cara de alguien real a un ejemplo de fraude puede causarle
+   un perjuicio. Prefiere ilustraciones, imágenes conceptuales, o fotos
+   donde el rostro no sea el foco.
