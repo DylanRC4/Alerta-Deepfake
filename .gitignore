@@ -9,3 +9,7 @@ dist/
 build/
 .DS_Store
 backend/uploads/
+
+# Notas personales, no van al repositorio
+COMANDOS.md
+SUSTENTACION.md
