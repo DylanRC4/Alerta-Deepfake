@@ -830,6 +830,109 @@ textarea { min-height: 7rem; resize: vertical; }
   color: var(--color-ink-soft);
 }
 
+/* ---------- Acordeón de retos ---------- */
+.acordeon {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: var(--space-3);
+}
+
+.reto {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.reto[open] { border-left-color: var(--color-accent); }
+
+.reto summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  padding-right: 3rem;
+  position: relative;
+  list-style: none;
+}
+.reto summary::-webkit-details-marker { display: none; }
+.reto summary:hover { background: var(--color-bg); }
+
+/* Indicador de plegado: rota en lugar de cambiar de símbolo */
+.reto summary::after {
+  content: "";
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-right: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.reto[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+@media (prefers-reduced-motion: reduce) {
+  .reto summary::after { transition: none; }
+}
+
+.reto-numero {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.reto[open] .reto-numero { background: var(--color-stamp-amber-oscuro); }
+
+.reto-encabezado { display: grid; gap: 0.1rem; }
+.reto-titulo {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  line-height: 1.3;
+}
+.reto-resumen {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--color-ink-soft);
+  line-height: 1.4;
+}
+/* Al abrir, el resumen sobra: el detalle ya lo explica */
+.reto[open] .reto-resumen { display: none; }
+
+.reto-detalle {
+  padding: 0 var(--space-3) var(--space-2) calc(2rem + var(--space-2) * 2);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2);
+}
+.reto-detalle p { margin-bottom: 0.7rem; }
+.reto-detalle p:last-child { margin-bottom: 0; }
+.reto-detalle strong { color: var(--color-primary-dark); }
+
+.reto-aprendizaje {
+  background: var(--color-bg);
+  border-left: 3px solid var(--color-stamp-green);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 0.6rem var(--space-2);
+  font-style: italic;
+  color: var(--color-ink);
+  margin-top: var(--space-2) !important;
+}
+
+@media (max-width: 560px) {
+  .reto-detalle { padding-left: var(--space-2); }
+}
+
 /* Código en línea dentro del contenido */
 code {
   font-family: var(--font-mono);

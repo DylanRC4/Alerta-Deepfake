@@ -120,83 +120,156 @@
     <section class="contenedor">
       <span class="expediente-numero">Decisiones de seguridad</span>
       <h2>Cómo se protege</h2>
-      <p>Un sitio que recibe denuncias y archivos de desconocidos es, por definición, un blanco. Estas son las defensas implementadas y el ataque concreto que cada una detiene:</p>
+      <p class="parrafo-guia">Un sitio que recibe denuncias y archivos de desconocidos es, por definición, un blanco. Las defensas se agrupan en cuatro frentes:</p>
 
-      <div style="overflow-x:auto;">
-        <table class="tabla-normativa">
-          <thead>
-            <tr><th scope="col">Medida</th><th scope="col">Qué ataque previene</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Consultas parametrizadas</td><td>Inyección SQL: los datos del usuario nunca se concatenan dentro de una sentencia.</td></tr>
-            <tr><td>Verificación de <em>magic bytes</em></td><td>Archivos disfrazados: un ejecutable renombrado a <code>.jpg</code> se rechaza porque se lee su contenido real, no su extensión.</td></tr>
-            <tr><td>Nombres de archivo aleatorios</td><td>Path traversal y sobrescritura: el nombre original que envía el usuario se descarta por completo.</td></tr>
-            <tr><td>Límite de tamaño y lista blanca de tipos</td><td>Agotamiento de disco y subida de contenido arbitrario.</td></tr>
-            <tr><td><code>textContent</code> en vez de <code>innerHTML</code></td><td>XSS almacenado: lo que escribe un denunciante se inserta como texto, nunca como HTML ejecutable.</td></tr>
-            <tr><td>Validación de esquema en enlaces</td><td>XSS vía <code>javascript:</code> en el campo de evidencia externa: solo se aceptan enlaces <code>http</code> y <code>https</code>.</td></tr>
-            <tr><td>Comparación en tiempo constante</td><td>Ataques de temporización sobre la contraseña del panel.</td></tr>
-            <tr><td>Cookie firmada y <code>httpOnly</code></td><td>Suplantación de sesión: la cookie no se puede falsificar ni leer desde JavaScript.</td></tr>
-            <tr><td>Límite de peticiones</td><td>Fuerza bruta contra el login y saturación del formulario público.</td></tr>
-            <tr><td>Errores genéricos al cliente</td><td>Filtración de estructura interna de la base de datos a través de mensajes de error.</td></tr>
-            <tr><td>Secretos solo en variables de entorno</td><td>Credenciales publicadas por accidente en el repositorio.</td></tr>
-          </tbody>
-        </table>
+      <div class="tarjetas tarjetas-4">
+        <article class="tarjeta">
+          <h3>Entrada de datos</h3>
+          <p>Todo lo que escribe un usuario se valida en el servidor y se inserta como texto, nunca como código.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Archivos subidos</h3>
+          <p>Se verifica el contenido real del archivo, no su extensión, y se guarda con un nombre aleatorio.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Acceso al panel</h3>
+          <p>Contraseña comparada en tiempo constante, sesión firmada y límite de intentos.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Secretos y errores</h3>
+          <p>Credenciales solo por variables de entorno; los errores internos nunca llegan al cliente.</p>
+        </article>
       </div>
+
+      <details class="bloque-plegable">
+        <summary>
+          <span class="plegable-titulo">Ver las 11 medidas y el ataque que detiene cada una</span>
+          <span class="plegable-pista">Detalle técnico</span>
+        </summary>
+        <div class="plegable-contenido">
+          <div style="overflow-x:auto;">
+            <table class="tabla-normativa">
+              <thead>
+                <tr><th scope="col">Medida</th><th scope="col">Qué ataque previene</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Consultas parametrizadas</td><td>Inyección SQL: los datos del usuario nunca se concatenan dentro de una sentencia.</td></tr>
+                <tr><td>Verificación de <em>magic bytes</em></td><td>Archivos disfrazados: un ejecutable renombrado a <code>.jpg</code> se rechaza porque se lee su contenido real, no su extensión.</td></tr>
+                <tr><td>Nombres de archivo aleatorios</td><td>Path traversal y sobrescritura: el nombre original que envía el usuario se descarta por completo.</td></tr>
+                <tr><td>Límite de tamaño y lista blanca de tipos</td><td>Agotamiento de disco y subida de contenido arbitrario.</td></tr>
+                <tr><td><code>textContent</code> en vez de <code>innerHTML</code></td><td>XSS almacenado: lo que escribe un denunciante se inserta como texto, nunca como HTML ejecutable.</td></tr>
+                <tr><td>Validación de esquema en enlaces</td><td>XSS vía <code>javascript:</code> en el campo de evidencia externa: solo se aceptan enlaces <code>http</code> y <code>https</code>.</td></tr>
+                <tr><td>Comparación en tiempo constante</td><td>Ataques de temporización sobre la contraseña del panel.</td></tr>
+                <tr><td>Cookie firmada y <code>httpOnly</code></td><td>Suplantación de sesión: la cookie no se puede falsificar ni leer desde JavaScript.</td></tr>
+                <tr><td>Límite de peticiones</td><td>Fuerza bruta contra el login y saturación del formulario público.</td></tr>
+                <tr><td>Errores genéricos al cliente</td><td>Filtración de estructura interna de la base de datos a través de mensajes de error.</td></tr>
+                <tr><td>Secretos solo en variables de entorno</td><td>Credenciales publicadas por accidente en el repositorio.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
     </section>
 
     <!-- ============ RETOS ============ -->
     <section class="contenedor">
       <span class="expediente-numero">Bitácora de incidentes</span>
       <h2>Retos durante el desarrollo</h2>
-      <p>Ninguno de estos problemas estaba planeado. Todos aparecieron durante el desarrollo real y se resolvieron identificando la causa raíz, no aplicando parches a ciegas:</p>
+      <p class="parrafo-guia">Ninguno estaba planeado: todos aparecieron durante el desarrollo real. Despliega cada uno para ver la causa raíz y cómo se resolvió.</p>
 
-      <ol class="linea-tiempo">
-        <li>
-          <span class="paso-numero" aria-hidden="true">1</span>
-          <h3>Contraseñas por defecto en el repositorio</h3>
-          <p><strong>Problema:</strong> el <code>docker-compose.yml</code> traía contraseñas escritas directamente en el archivo y valores por defecto débiles que se habrían publicado en GitHub.</p>
-          <p><strong>Solución:</strong> se movieron a variables de entorno obligatorias. Ahora, si falta una, Docker se niega a arrancar con un mensaje claro en vez de usar silenciosamente una clave insegura. Fallar ruidosamente es preferible a funcionar de forma insegura.</p>
-        </li>
+      <div class="acordeon">
+        <details class="reto">
+          <summary>
+            <span class="reto-numero" aria-hidden="true">1</span>
+            <span class="reto-encabezado">
+              <span class="reto-titulo">Contraseñas por defecto en el repositorio</span>
+              <span class="reto-resumen">Valores débiles que se habrían publicado en GitHub</span>
+            </span>
+          </summary>
+          <div class="reto-detalle">
+            <p><strong>Problema:</strong> el <code>docker-compose.yml</code> traía contraseñas escritas directamente en el archivo y valores por defecto débiles.</p>
+            <p><strong>Solución:</strong> se movieron a variables de entorno obligatorias. Si falta una, Docker se niega a arrancar con un mensaje claro en vez de usar silenciosamente una clave insegura.</p>
+            <p class="reto-aprendizaje">Fallar ruidosamente es preferible a funcionar de forma insegura.</p>
+          </div>
+        </details>
 
-        <li>
-          <span class="paso-numero" aria-hidden="true">2</span>
-          <h3>La contraseña nueva no servía para entrar a la base de datos</h3>
-          <p><strong>Problema:</strong> tras cambiar la contraseña en el archivo de entorno, el backend seguía recibiendo <em>authentication failed</em>.</p>
-          <p><strong>Causa raíz:</strong> PostgreSQL solo aplica la contraseña la primera vez que se crea su volumen de datos. Como el volumen ya existía, conservaba la clave original y estaba ignorando la nueva.</p>
-          <p><strong>Solución:</strong> actualizar la contraseña dentro del motor con <code>ALTER USER</code>, en lugar de borrar el volumen —que habría destruido todos los reportes ya guardados—.</p>
-        </li>
+        <details class="reto">
+          <summary>
+            <span class="reto-numero" aria-hidden="true">2</span>
+            <span class="reto-encabezado">
+              <span class="reto-titulo">La contraseña nueva no servía para entrar a la base de datos</span>
+              <span class="reto-resumen">PostgreSQL seguía usando la clave original</span>
+            </span>
+          </summary>
+          <div class="reto-detalle">
+            <p><strong>Problema:</strong> tras cambiar la contraseña en el archivo de entorno, el backend seguía recibiendo <em>authentication failed</em>.</p>
+            <p><strong>Causa raíz:</strong> PostgreSQL solo aplica la contraseña la primera vez que se crea su volumen de datos. Como el volumen ya existía, conservaba la clave original.</p>
+            <p><strong>Solución:</strong> actualizarla dentro del motor con <code>ALTER USER</code>, en lugar de borrar el volumen —que habría destruido todos los reportes ya guardados—.</p>
+            <p class="reto-aprendizaje">Antes de borrar algo para arreglarlo, verificar qué datos se lleva por delante.</p>
+          </div>
+        </details>
 
-        <li>
-          <span class="paso-numero" aria-hidden="true">3</span>
-          <h3>La evidencia se "guardaba" pero no llegaba nunca</h3>
-          <p><strong>Problema:</strong> al adjuntar un archivo, el reporte se registraba con éxito pero la tabla de evidencias quedaba vacía y no aparecía ningún error.</p>
-          <p><strong>Causa raíz:</strong> el navegador seguía ejecutando la versión anterior del JavaScript desde su caché. Esa versión enviaba el formulario como JSON, formato en el que un archivo simplemente desaparece —los demás campos sí llegaban, y por eso todo parecía correcto—.</p>
-          <p><strong>Solución:</strong> en vez de seguir modificando código a ciegas, se añadieron registros temporales en el servidor para ver exactamente qué llegaba. Confirmaron que el problema era el caché y no la lógica. Probar en una ventana de incógnito lo verificó de inmediato.</p>
-        </li>
+        <details class="reto">
+          <summary>
+            <span class="reto-numero" aria-hidden="true">3</span>
+            <span class="reto-encabezado">
+              <span class="reto-titulo">La evidencia se "guardaba" pero no llegaba nunca</span>
+              <span class="reto-resumen">Un fallo silencioso, sin ningún mensaje de error</span>
+            </span>
+          </summary>
+          <div class="reto-detalle">
+            <p><strong>Problema:</strong> al adjuntar un archivo, el reporte se registraba con éxito pero la tabla de evidencias quedaba vacía y no aparecía ningún error.</p>
+            <p><strong>Causa raíz:</strong> el navegador ejecutaba una versión anterior del JavaScript desde su caché. Esa versión enviaba el formulario como JSON, formato en el que un archivo simplemente desaparece. Los demás campos sí llegaban, y por eso todo parecía correcto.</p>
+            <p><strong>Solución:</strong> en vez de seguir modificando código a ciegas, se añadieron registros temporales en el servidor para ver exactamente qué llegaba. Confirmaron que era el caché y no la lógica.</p>
+            <p class="reto-aprendizaje">Ante un fallo silencioso, primero observar los datos reales; después tocar el código.</p>
+          </div>
+        </details>
 
-        <li>
-          <span class="paso-numero" aria-hidden="true">4</span>
-          <h3>Una dependencia con vulnerabilidad conocida</h3>
-          <p><strong>Problema:</strong> la librería elegida para verificar el contenido real de los archivos tenía una vulnerabilidad de denegación de servicio, sin parche disponible para una versión compatible con el proyecto.</p>
-          <p><strong>Solución:</strong> se reemplazó por una verificación propia de unas 50 líneas, acotada a los nueve formatos que el sitio realmente acepta. Menos superficie de ataque, sin dependencias externas, y totalmente auditable. Una librería genérica traía riesgo por formatos que el proyecto nunca iba a recibir.</p>
-        </li>
+        <details class="reto">
+          <summary>
+            <span class="reto-numero" aria-hidden="true">4</span>
+            <span class="reto-encabezado">
+              <span class="reto-titulo">Una dependencia con vulnerabilidad conocida</span>
+              <span class="reto-resumen">Sin parche disponible para una versión compatible</span>
+            </span>
+          </summary>
+          <div class="reto-detalle">
+            <p><strong>Problema:</strong> la librería elegida para verificar el contenido real de los archivos tenía una vulnerabilidad de denegación de servicio, sin parche para una versión compatible con el proyecto.</p>
+            <p><strong>Solución:</strong> se reemplazó por una verificación propia de unas 50 líneas, acotada a los nueve formatos que el sitio realmente acepta. Menos superficie de ataque, sin dependencias externas y totalmente auditable.</p>
+            <p class="reto-aprendizaje">Una librería genérica traía riesgo por formatos que este proyecto nunca iba a recibir.</p>
+          </div>
+        </details>
 
-        <li>
-          <span class="paso-numero" aria-hidden="true">5</span>
-          <h3>Los archivos subidos daban error 404</h3>
-          <p><strong>Problema:</strong> el archivo se guardaba correctamente y quedaba registrado en la base de datos, pero al abrir su enlace aparecía un 404 de Nginx.</p>
-          <p><strong>Causa raíz:</strong> se había añadido la nueva ruta a la configuración de Nginx, pero ese contenedor nunca se reinició, así que seguía trabajando con la configuración anterior.</p>
-          <p><strong>Aprendizaje:</strong> cambiar un archivo de configuración no basta; hay que asegurarse de que el servicio efectivamente lo releyó.</p>
-        </li>
+        <details class="reto">
+          <summary>
+            <span class="reto-numero" aria-hidden="true">5</span>
+            <span class="reto-encabezado">
+              <span class="reto-titulo">Los archivos subidos daban error 404</span>
+              <span class="reto-resumen">Nginx trabajaba con la configuración anterior</span>
+            </span>
+          </summary>
+          <div class="reto-detalle">
+            <p><strong>Problema:</strong> el archivo se guardaba correctamente y quedaba registrado en la base de datos, pero al abrir su enlace aparecía un 404 de Nginx.</p>
+            <p><strong>Causa raíz:</strong> se había añadido la nueva ruta a la configuración, pero ese contenedor nunca se reinició.</p>
+            <p class="reto-aprendizaje">Cambiar un archivo de configuración no basta: hay que confirmar que el servicio lo releyó.</p>
+          </div>
+        </details>
 
-        <li>
-          <span class="paso-numero" aria-hidden="true">6</span>
-          <h3>Credenciales filtradas al repositorio público</h3>
-          <p><strong>Problema:</strong> un archivo de texto con el contenido completo del archivo de entorno —las cuatro contraseñas reales— se subió por accidente a un repositorio público.</p>
-          <p><strong>Solución:</strong> primero rotar las cuatro credenciales, porque borrar el archivo no deshace el hecho de que estuvieron expuestas; después reescribir el historial de Git con <code>git filter-repo</code> para eliminarlas de todos los commits anteriores, y resincronizar ambas máquinas de trabajo.</p>
-          <p><strong>Aprendizaje:</strong> ante una filtración, el orden importa. Rotar primero, limpiar después.</p>
-        </li>
-      </ol>
+        <details class="reto">
+          <summary>
+            <span class="reto-numero" aria-hidden="true">6</span>
+            <span class="reto-encabezado">
+              <span class="reto-titulo">Credenciales filtradas al repositorio público</span>
+              <span class="reto-resumen">Las cuatro contraseñas reales, subidas por accidente</span>
+            </span>
+          </summary>
+          <div class="reto-detalle">
+            <p><strong>Problema:</strong> un archivo de texto con el contenido completo del archivo de entorno se subió por accidente a un repositorio público.</p>
+            <p><strong>Solución:</strong> primero rotar las cuatro credenciales, porque borrar el archivo no deshace el hecho de que estuvieron expuestas; después reescribir el historial de Git con <code>git filter-repo</code> para eliminarlas de todos los commits anteriores, y resincronizar ambas máquinas.</p>
+            <p class="reto-aprendizaje">Ante una filtración el orden importa: rotar primero, limpiar después.</p>
+          </div>
+        </details>
+      </div>
     </section>
 
     <!-- ============ FLUJO DE TRABAJO ============ -->
