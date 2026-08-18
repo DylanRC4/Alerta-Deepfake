@@ -134,9 +134,6 @@ a:hover { color: var(--color-stamp-amber); }
 }
 
 .marca {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.4rem;
@@ -144,14 +141,22 @@ a:hover { color: var(--color-stamp-amber); }
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  white-space: nowrap;   /* nunca debe partirse en dos líneas */
+  flex-shrink: 0;
 }
-.marca span {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 0.65rem;
-  color: var(--color-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+
+/* Franja superior de acento. Estaba en el marcado de todas las páginas desde
+   el inicio pero sin estilos, así que no pintaba nada. Ahora remata la
+   cabecera con los colores del sistema. */
+.franja-alerta {
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--color-primary) 0%,
+    var(--color-primary) 60%,
+    var(--color-accent) 60%,
+    var(--color-accent) 100%
+  );
 }
 
 /* ---------- Banda institucional ----------
@@ -181,17 +186,32 @@ a:hover { color: var(--color-stamp-amber); }
 }
 @media (min-width: 768px) { .logo-u { height: 3.4rem; } }
 
-.barra-institucional-texto {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-ink-soft);
-  text-align: right;
+/* Enlaces de utilidad: "Acerca de" y "Panel" no son parte del recorrido
+   educativo, así que viven aquí arriba y no compiten con las seis secciones
+   principales. Es el patrón habitual de barra de utilidad sobre barra de
+   navegación, y de paso libera el espacio que antes saturaba la cabecera. */
+.nav-utilidad {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
-@media (max-width: 480px) {
-  /* En pantallas angostas el texto compite con el logo: mejor solo el logo */
-  .barra-institucional-texto { display: none; }
+.nav-utilidad a {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.nav-utilidad a:hover { background: var(--color-bg); color: var(--color-primary); }
+.nav-utilidad a[aria-current="page"] {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  background: var(--color-bg);
 }
 
 .nav-toggle {
@@ -240,33 +260,11 @@ a:hover { color: var(--color-stamp-amber); }
   border-bottom-color: var(--color-accent);
 }
 
-/* Navegación secundaria: "Acerca de" y "Panel" no son parte del recorrido
-   educativo, así que se separan visualmente sin romper el sistema — mismo
-   tipo y tamaño, menor peso y opacidad. */
-.nav-secundario a { color: #93A0B8; }
-.nav-secundario a:hover { color: #fff; }
-.nav-separador { display: none; }
-
-@media (min-width: 768px) {
+/* El menú se despliega hasta 1024px: con seis secciones, forzarlas en una
+   sola fila por debajo de ese ancho hacía que todo se partiera en dos líneas. */
+@media (min-width: 1024px) {
   .nav-toggle { display: none; }
   .nav-lista { display: flex; flex-direction: row; width: auto; align-items: center; }
-  .nav-separador {
-    display: block;
-    width: 1px;
-    height: 1.2rem;
-    background: rgba(255, 255, 255, 0.22);
-    margin: 0 0.4rem;
-  }
-  .nav-secundario a { font-size: 0.94em; }
-}
-@media (max-width: 767px) {
-  /* En el menú desplegable la separación se hace con una línea horizontal */
-  .nav-separador {
-    display: block;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.15);
-    margin: 0.45rem 0;
-  }
 }
 
 /* ---------- Contenedores ---------- */

@@ -17,14 +17,17 @@
   <div class="barra-institucional">
     <div class="contenedor">
       <img class="logo-u" src="img/logoU.jpg" alt="Universitaria de Colombia"
-           onerror="this.closest('.barra-institucional').remove();">
-      <span class="barra-institucional-texto">Ingeniería de Software · Proyecto ABP</span>
+           onerror="this.remove();">
+      <nav class="nav-utilidad" aria-label="Enlaces del proyecto">
+        <a href="acerca.html">Acerca de</a>
+        <a href="panel.html">Panel</a>
+      </nav>
     </div>
   </div>
 
   <header class="sitio-header">
     <nav class="nav-barra" aria-label="Navegación principal">
-      <a class="marca" href="index.html">Alerta Deepfake<span>Proyecto ABP · Ingeniería Web</span></a>
+      <a class="marca" href="index.html">Alerta Deepfake</a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="menu-principal">Menú</button>
       <ul class="nav-lista" id="menu-principal">
         <li><a href="index.html">Inicio</a></li>
@@ -33,9 +36,6 @@
         <li><a href="simulador.html">Simulador</a></li>
         <li><a href="prevencion.html">Prevención</a></li>
         <li><a href="reporte.html" aria-current="page">Reportar</a></li>
-        <li class="nav-separador" aria-hidden="true"></li>
-        <li class="nav-secundario"><a href="acerca.html">Acerca de</a></li>
-        <li class="nav-secundario"><a href="panel.html">Panel</a></li>
       </ul>
     </nav>
   </header>
