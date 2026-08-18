@@ -665,6 +665,142 @@ code {
 .pregunta-destacada footer { font-family: var(--font-mono); font-size: 0.82rem; }
 
 /* =========================================================
+   PREVENCIÓN — Protocolo
+   ========================================================= */
+
+/* ---------- Índice de salto ---------- */
+.indice-pagina {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: var(--space-2);
+  padding-bottom: 0;
+}
+.indice-pagina a {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: var(--color-ink-soft);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.indice-pagina a:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+/* ---------- Pasos en cuadrícula (antes: línea de tiempo vertical) ---------- */
+.pasos-grid {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0 0;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: 1fr;
+  counter-reset: paso;
+}
+@media (min-width: 640px) { .pasos-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .pasos-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.pasos-grid li {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-2) var(--space-2) 3.4rem;
+}
+.paso-marca {
+  position: absolute;
+  left: var(--space-2);
+  top: var(--space-2);
+  width: 2rem;
+  height: 2rem;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.pasos-grid h3 { font-size: 1.08rem; margin-bottom: 0.3rem; }
+.pasos-grid p { margin: 0; font-size: 0.95rem; }
+
+/* ---------- Listas de verificación en dos columnas ---------- */
+.listas-doble {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) { .listas-doble { grid-template-columns: repeat(2, 1fr); } }
+.listas-doble h2 { margin-bottom: 0.4rem; }
+
+.checklist-compacta li { padding: 0.7rem var(--space-2); }
+.checklist-compacta label { font-size: 0.95rem; line-height: 1.45; }
+
+/* ---------- Bloque plegable ---------- */
+.bloque-plegable {
+  margin-top: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.bloque-plegable summary {
+  cursor: pointer;
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  list-style: none;
+  position: relative;
+  padding-right: 3rem;
+}
+.bloque-plegable summary::-webkit-details-marker { display: none; }
+.bloque-plegable summary::after {
+  content: "+";
+  position: absolute;
+  right: var(--space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.bloque-plegable[open] summary::after { content: "−"; }
+.bloque-plegable summary:hover { background: var(--color-bg); }
+.plegable-titulo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+.plegable-pista {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-ink-soft);
+}
+.plegable-contenido {
+  padding: 0 var(--space-3) var(--space-3);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2);
+}
+
+/* =========================================================
    TIPOLOGÍAS — Guía educativa
    ========================================================= */
 
