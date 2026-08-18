@@ -50,6 +50,7 @@ y protección de datos personales, con backend para gestionar reportes de incide
 | GET    | /api/categorias           | Catálogo de tipos de deepfake                                   |
 | POST   | /api/reportes             | Registrar un nuevo reporte de incidente (con evidencia opcional) |
 | GET    | /api/reportes             | Listar reportes con su evidencia. **Requiere sesión de admin.** |
+| PATCH  | /api/reportes/:id/estado  | Cambiar el estado de revisión de un reporte. **Requiere sesión de admin.** |
 | POST   | /api/admin/login          | Iniciar sesión en el panel (contraseña única, `ADMIN_PASSWORD`)  |
 | POST   | /api/admin/logout         | Cerrar sesión                                                    |
 | GET    | /api/admin/check          | Indica si la sesión actual está autenticada                     |
@@ -113,8 +114,12 @@ mobile-first y con accesibilidad básica (skip-link, foco visible, `aria-current
 - `simulador.html` — casos interactivos de detección.
 - `reporte.html` — formulario conectado a `POST /api/reportes` y `GET /api/categorias`,
   con evidencia opcional (subir archivo o pegar un enlace externo).
-- `panel.html` — vista privada (contraseña) con la lista de reportes, sus evidencias y
-  estadísticas por categoría. Pensada para que la profesora revise el trabajo, no para
+- `acerca.html` — bitácora técnica del proyecto: decisiones de arquitectura y sus
+  porqués, medidas de seguridad con el ataque que previene cada una, retos reales
+  encontrados durante el desarrollo, y perfil del desarrollador.
+- `panel.html` — vista privada (contraseña) con la lista de reportes, sus evidencias,
+  estadísticas por categoría y por estado, y la posibilidad de cambiar el estado de
+  revisión de cada reporte. Pensada para que la profesora revise el trabajo, no para
   uso público.
 
 ## Base de datos
@@ -124,7 +129,8 @@ Tres tablas (`db/init.sql`):
 - `categorias_deepfake`: catálogo fijo de 4 categorías (clonación de voz, generación de
   rostro, video falso, perfil falso), sembrado una sola vez al crear el contenedor. No
   se espera que reciba filas nuevas en operación normal — es solo el catálogo del `<select>`.
-- `reportes`: un registro por incidente reportado.
+- `reportes`: un registro por incidente reportado. Su columna `estado_revision`
+  (`Recibido` / `En revisión` / `Cerrado`) se gestiona desde el panel.
 - `evidencias`: cero o más registros por reporte, con el tipo y un enlace al archivo
   (subido directamente al sitio, guardado en el volumen Docker `uploads_data`) o a un
   recurso externo (Drive, Imgur, etc.), según lo que haya elegido el usuario.
@@ -183,6 +189,6 @@ de prueba desde `reporte.html` y confirmar en pgAdmin que aparece en `reportes` 
 
 ## Próximas mejoras
 
-- Filtros y paginación en el panel (por categoría, fecha, con/sin evidencia).
-- Cuentas individuales para el panel si más de una persona necesita acceso.
 - Pruebas automatizadas de los endpoints y validadores.
+- Filtros y paginación en el panel (por categoría, fecha, estado, con/sin evidencia).
+- Cuentas individuales para el panel si más de una persona necesita acceso.

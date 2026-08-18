@@ -50,7 +50,7 @@ router.get('/check', (req, res) => {
 // GET /api/admin/estadisticas -> conteos para el panel (protegido)
 router.get('/estadisticas', requiereAdmin, async (req, res) => {
   try {
-    const [totalRes, porCategoriaRes, conEvidenciaRes] = await Promise.all([
+    const [totalRes, porCategoriaRes, conEvidenciaRes, porEstadoRes] = await Promise.all([
       pool.query('SELECT COUNT(*)::int AS total FROM reportes'),
       pool.query(
         `SELECT c.nombre_categoria, c.nivel_riesgo, COUNT(r.id_reporte)::int AS total
@@ -59,13 +59,20 @@ router.get('/estadisticas', requiereAdmin, async (req, res) => {
          GROUP BY c.id_categoria, c.nombre_categoria, c.nivel_riesgo
          ORDER BY total DESC`
       ),
-      pool.query('SELECT COUNT(DISTINCT id_reporte)::int AS total FROM evidencias')
+      pool.query('SELECT COUNT(DISTINCT id_reporte)::int AS total FROM evidencias'),
+      pool.query(
+        `SELECT estado_revision, COUNT(*)::int AS total
+         FROM reportes
+         GROUP BY estado_revision
+         ORDER BY total DESC`
+      )
     ]);
 
     res.json({
       totalReportes: totalRes.rows[0].total,
       reportesConEvidencia: conEvidenciaRes.rows[0].total,
-      porCategoria: porCategoriaRes.rows
+      porCategoria: porCategoriaRes.rows,
+      porEstado: porEstadoRes.rows
     });
   } catch (err) {
     console.error('[GET /api/admin/estadisticas]', err);

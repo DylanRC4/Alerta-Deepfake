@@ -57,6 +57,25 @@ if (panelLogin && panelDashboard) {
       cont.appendChild(art);
     });
 
+    const contEstado = document.querySelector('#panel-stats-estado');
+    contEstado.innerHTML = '';
+    (stats.porEstado || []).forEach((e) => {
+      const art = document.createElement('article');
+      art.className = 'tarjeta';
+      const eyebrow = document.createElement('span');
+      eyebrow.className = 'expediente-numero';
+      eyebrow.textContent = e.estado_revision;
+      const valor = document.createElement('p');
+      valor.style.fontFamily = 'var(--font-display)';
+      valor.style.fontSize = '1.6rem';
+      valor.style.fontWeight = '700';
+      valor.style.margin = '0';
+      valor.textContent = e.total;
+      art.appendChild(eyebrow);
+      art.appendChild(valor);
+      contEstado.appendChild(art);
+    });
+
     const contCat = document.querySelector('#panel-stats-categoria');
     contCat.innerHTML = '';
     stats.porCategoria.forEach((cat) => {
@@ -80,6 +99,62 @@ if (panelLogin && panelDashboard) {
     });
   }
 
+  const ESTADOS = ['Recibido', 'En revisión', 'Cerrado'];
+
+  // Celda con selector para cambiar el estado de revisión del reporte.
+  // Guarda al instante contra la API y da feedback visual del resultado.
+  function crearCeldaEstado(reporte) {
+    const td = document.createElement('td');
+    const select = document.createElement('select');
+    select.className = 'select-estado';
+    select.setAttribute('aria-label', `Estado del reporte ${reporte.id_reporte}`);
+
+    ESTADOS.forEach((estado) => {
+      const opt = document.createElement('option');
+      opt.value = estado;
+      opt.textContent = estado;
+      if (estado === reporte.estado_revision) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    const aviso = document.createElement('span');
+    aviso.className = 'aviso-estado';
+    aviso.setAttribute('role', 'status');
+
+    select.addEventListener('change', async () => {
+      const valorAnterior = reporte.estado_revision;
+      const nuevoEstado = select.value;
+      select.disabled = true;
+      aviso.textContent = 'Guardando…';
+      aviso.className = 'aviso-estado';
+
+      try {
+        const resp = await fetch(`/api/reportes/${reporte.id_reporte}/estado`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ estado_revision: nuevoEstado })
+        });
+        const resultado = await resp.json();
+        if (!resp.ok) throw new Error(resultado.error || 'No se pudo actualizar');
+
+        reporte.estado_revision = resultado.estado_revision;
+        aviso.textContent = '✓';
+        aviso.className = 'aviso-estado ok';
+        cargarEstadisticas(); // los contadores por estado cambian
+      } catch (err) {
+        select.value = valorAnterior; // revierte visualmente si falló
+        aviso.textContent = err.message;
+        aviso.className = 'aviso-estado error';
+      } finally {
+        select.disabled = false;
+      }
+    });
+
+    td.appendChild(select);
+    td.appendChild(aviso);
+    return td;
+  }
+
   function renderTabla(reportes) {
     const tbody = document.querySelector('#tabla-reportes tbody');
     tbody.innerHTML = '';
@@ -87,7 +162,7 @@ if (panelLogin && panelDashboard) {
     if (reportes.length === 0) {
       const tr = document.createElement('tr');
       const td = document.createElement('td');
-      td.colSpan = 7;
+      td.colSpan = 8;
       td.textContent = 'Todavía no hay reportes registrados.';
       tr.appendChild(td);
       tbody.appendChild(tr);
@@ -138,8 +213,18 @@ if (panelLogin && panelDashboard) {
         });
       }
       tr.appendChild(tdEvidencia);
+      tr.appendChild(crearCeldaEstado(r));
       tbody.appendChild(tr);
     });
+  }
+
+  async function cargarEstadisticas() {
+    const statsResp = await fetch('/api/admin/estadisticas');
+    if (statsResp.status === 401) {
+      mostrarVista(false);
+      return;
+    }
+    renderStats(await statsResp.json());
   }
 
   async function cargarDatos() {

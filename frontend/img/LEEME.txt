@@ -1,0 +1,8 @@
+Coloca aquí tu foto de perfil con el nombre exacto:
+
+    dylan.jpg
+
+(también sirve dylan.png si cambias la extensión en acerca.html, línea del <img>)
+
+Recomendación: foto cuadrada, mínimo 400x400 px, menos de 500 KB.
+Si el archivo no existe, la página muestra un marcador de posición con tus iniciales.

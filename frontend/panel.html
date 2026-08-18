@@ -25,6 +25,7 @@
         <li><a href="prevencion.html">Prevención</a></li>
         <li><a href="simulador.html">Simulador</a></li>
         <li><a href="reporte.html">Reportar</a></li>
+        <li><a href="acerca.html">Acerca de</a></li>
         <li><a href="panel.html" aria-current="page">Panel</a></li>
       </ul>
     </nav>
@@ -68,6 +69,9 @@
       <h3 style="margin-top:2rem;">Reportes por categoría</h3>
       <div class="tarjetas tarjetas-4" id="panel-stats-categoria"></div>
 
+      <h3 style="margin-top:2rem;">Reportes por estado de revisión</h3>
+      <div class="tarjetas" id="panel-stats-estado"></div>
+
       <h3 style="margin-top:2rem;">Reportes registrados</h3>
       <div style="overflow-x:auto;">
         <table class="tabla-normativa" id="tabla-reportes">
@@ -80,10 +84,11 @@
               <th scope="col">Categoría</th>
               <th scope="col">Plataforma</th>
               <th scope="col">Evidencia</th>
+              <th scope="col">Estado</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td colspan="7">Cargando…</td></tr>
+            <tr><td colspan="8">Cargando…</td></tr>
           </tbody>
         </table>
       </div>

@@ -12,6 +12,7 @@ const pool = require('../db');
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TIPOS_EVIDENCIA_VALIDOS = ['Captura de pantalla', 'Documento', 'Audio', 'Video', 'Enlace', 'Otro'];
+const ESTADOS_REVISION_VALIDOS = ['Recibido', 'En revisión', 'Cerrado'];
 
 // Tipos MIME permitidos -> extensión con la que se guarda el archivo en disco
 const MIME_A_EXTENSION = {
@@ -246,6 +247,40 @@ router.get('/', requiereAdmin, async (req, res) => {
   } catch (err) {
     console.error('[GET /api/reportes]', err);
     res.status(500).json({ error: 'No se pudieron obtener los reportes.' });
+  }
+});
+
+// PATCH /api/reportes/:id/estado -> actualizar el estado de revisión de un reporte
+// Protegido: solo desde el panel de administración.
+router.patch('/:id/estado', requiereAdmin, async (req, res) => {
+  const id = Number(req.params.id);
+  const { estado_revision } = req.body || {};
+
+  if (!Number.isInteger(id) || id <= 0) {
+    return res.status(400).json({ error: 'Identificador de reporte no válido' });
+  }
+  if (!ESTADOS_REVISION_VALIDOS.includes(estado_revision)) {
+    return res.status(400).json({
+      error: `Estado no válido. Valores permitidos: ${ESTADOS_REVISION_VALIDOS.join(', ')}`
+    });
+  }
+
+  try {
+    const { rows } = await pool.query(
+      `UPDATE reportes
+       SET estado_revision = $1
+       WHERE id_reporte = $2
+       RETURNING id_reporte, estado_revision`,
+      [estado_revision, id]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'El reporte no existe' });
+    }
+    res.json(rows[0]);
+  } catch (err) {
+    console.error('[PATCH /api/reportes/:id/estado]', err);
+    res.status(500).json({ error: 'No se pudo actualizar el estado del reporte.' });
   }
 });
 
