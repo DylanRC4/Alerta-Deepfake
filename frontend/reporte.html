@@ -34,88 +34,216 @@
     <section class="hero">
       <div class="contenedor">
         <div class="hero-texto">
-          <h1>Reporta un caso</h1>
-          <p>Esta información queda registrada en nuestra base de datos para fines educativos y de seguimiento del proyecto. No sustituye una denuncia formal.</p>
+          <span class="expediente-numero">Registro de caso</span>
+          <h1>Reporta lo que ocurrió</h1>
+          <p>Toma unos dos minutos. Al terminar recibes un número de expediente para hacer seguimiento.</p>
         </div>
         <div class="sello" aria-hidden="true">Registro<br>oficial</div>
       </div>
     </section>
 
-    <div class="franja-alerta" aria-hidden="true"></div>
+    <!-- ====== BANDA DE URGENCIA ====== -->
+    <aside class="banda-urgente" aria-label="Advertencia previa">
+      <div class="contenedor">
+        <div class="banda-urgente-texto">
+          <strong>¿Hay dinero en riesgo en este momento?</strong>
+          <span>Llama a tu banco antes de llenar este formulario. Frenar la transacción es lo primero.</span>
+        </div>
+        <a class="boton boton-urgente" href="prevencion.html#ruta">Ver la ruta de actuación</a>
+      </div>
+    </aside>
 
     <section class="contenedor">
-      <div class="aviso" role="note" style="margin-bottom: 1.5rem;">
-        <div>
-          <strong>Antes de continuar:</strong> si hay riesgo económico inmediato (una transferencia en curso, por ejemplo), corta la comunicación con el atacante primero. Este formulario no reemplaza la denuncia ante la <a href="https://www.fiscalia.gov.co" target="_blank" rel="noopener">Fiscalía</a>.
-        </div>
+      <div class="reporte-envoltorio">
+        <!-- ============ FORMULARIO ============ -->
+        <form id="formulario-reporte" class="formulario formulario-reporte" novalidate enctype="multipart/form-data">
+
+          <!-- ---- Paso 1: el incidente ---- -->
+          <fieldset class="bloque-campos">
+            <legend>
+              <span class="bloque-numero" aria-hidden="true">1</span>
+              Qué ocurrió
+            </legend>
+
+            <div class="campo">
+              <label for="id_categoria">Tipo de caso <span class="req" aria-hidden="true">*</span></label>
+              <select id="id_categoria" name="id_categoria" required aria-describedby="ayuda-categoria">
+                <option value="" selected disabled>Selecciona una categoría</option>
+              </select>
+              <span class="ayuda" id="ayuda-categoria">¿No sabes cuál elegir? Revisa las <a href="tipologias.html">tipologías</a>.</span>
+            </div>
+
+            <div class="campos-fila">
+              <div class="campo">
+                <label for="fecha_incidente">Fecha del incidente <span class="req" aria-hidden="true">*</span></label>
+                <input type="date" id="fecha_incidente" name="fecha_incidente" required>
+              </div>
+
+              <div class="campo">
+                <label for="plataforma_origen">Dónde ocurrió</label>
+                <input type="text" id="plataforma_origen" name="plataforma_origen" maxlength="100"
+                       placeholder="WhatsApp, Instagram, llamada…" list="plataformas-comunes">
+                <datalist id="plataformas-comunes">
+                  <option value="WhatsApp"></option>
+                  <option value="Instagram"></option>
+                  <option value="Facebook"></option>
+                  <option value="TikTok"></option>
+                  <option value="Telegram"></option>
+                  <option value="Llamada telefónica"></option>
+                  <option value="Correo electrónico"></option>
+                </datalist>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="descripcion_hechos">Descripción de los hechos <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="descripcion_hechos" name="descripcion_hechos" required minlength="10" maxlength="4000"
+                        aria-describedby="ayuda-descripcion contador-descripcion"
+                        placeholder="¿Qué pasó? ¿Cuándo lo notaste? ¿Qué te hizo sospechar?"></textarea>
+              <div class="campo-pie">
+                <span class="ayuda" id="ayuda-descripcion">Entre más detalle, mejor queda documentado el caso.</span>
+                <span class="contador" id="contador-descripcion" aria-live="off">0 / 4000</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ---- Paso 2: evidencia ---- -->
+          <fieldset class="bloque-campos">
+            <legend>
+              <span class="bloque-numero" aria-hidden="true">2</span>
+              Evidencia <span class="opcional">opcional</span>
+            </legend>
+
+            <div class="campo">
+              <span class="etiqueta-grupo" id="label-modo-evidencia">¿Tienes algo que adjuntar?</span>
+              <div class="opciones-radio" role="radiogroup" aria-labelledby="label-modo-evidencia">
+                <label class="opcion-radio">
+                  <input type="radio" name="modo_evidencia" value="ninguna" checked>
+                  <span>No por ahora</span>
+                </label>
+                <label class="opcion-radio">
+                  <input type="radio" name="modo_evidencia" value="archivo">
+                  <span>Subir un archivo</span>
+                </label>
+                <label class="opcion-radio">
+                  <input type="radio" name="modo_evidencia" value="enlace">
+                  <span>Pegar un enlace</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="evidencia-detalle" id="evidencia-detalle" hidden>
+              <div class="campo">
+                <label for="tipo_evidencia">Tipo de evidencia <span class="req" aria-hidden="true">*</span></label>
+                <select id="tipo_evidencia" name="tipo_evidencia">
+                  <option value="" selected disabled>Selecciona el tipo</option>
+                  <option value="Captura de pantalla">Captura de pantalla</option>
+                  <option value="Documento">Documento (PDF)</option>
+                  <option value="Audio">Audio</option>
+                  <option value="Video">Video</option>
+                  <option value="Enlace">Enlace / URL</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+
+              <div class="campo" id="campo-archivo" hidden>
+                <label for="archivo_evidencia">Archivo</label>
+                <input type="file" id="archivo_evidencia" name="archivo_evidencia"
+                       aria-describedby="ayuda-archivo"
+                       accept="image/jpeg,image/png,image/webp,application/pdf,audio/mpeg,audio/wav,audio/ogg,video/mp4,video/webm">
+                <span class="ayuda" id="ayuda-archivo">Imagen, PDF, audio o video. Máximo 15 MB.</span>
+              </div>
+
+              <div class="campo" id="campo-enlace" hidden>
+                <label for="enlace_archivo">Enlace</label>
+                <input type="url" id="enlace_archivo" name="enlace_archivo"
+                       aria-describedby="ayuda-enlace" placeholder="https://…">
+                <span class="ayuda" id="ayuda-enlace">Enlace a Drive, Imgur o donde tengas guardada la evidencia.</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ---- Paso 3: contacto ---- -->
+          <fieldset class="bloque-campos">
+            <legend>
+              <span class="bloque-numero" aria-hidden="true">3</span>
+              Datos de contacto
+            </legend>
+
+            <div class="campos-fila">
+              <div class="campo">
+                <label for="nombre_afectado">Nombre de la persona afectada <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="nombre_afectado" name="nombre_afectado" autocomplete="name" maxlength="150" required>
+              </div>
+
+              <div class="campo">
+                <label for="correo_contacto">Correo de contacto <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="correo_contacto" name="correo_contacto" autocomplete="email" maxlength="150" required
+                       aria-describedby="ayuda-correo">
+                <span class="ayuda" id="ayuda-correo">Solo para dar seguimiento a este reporte.</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="acciones-formulario">
+            <button type="submit" class="boton boton-primario" id="btn-enviar">Enviar reporte</button>
+            <span class="nota-obligatorio"><span class="req" aria-hidden="true">*</span> Campos obligatorios</span>
+          </div>
+
+          <div id="mensaje-estado" class="mensaje-estado" role="status" aria-live="polite"></div>
+        </form>
+
+        <!-- ============ COLUMNA LATERAL ============ -->
+        <aside class="reporte-lateral" aria-label="Información sobre el reporte">
+          <div class="tarjeta tarjeta-info">
+            <h2>Qué pasa con tu reporte</h2>
+            <ol class="lista-pasos-simple">
+              <li>Se guarda con fecha y un número de expediente único.</li>
+              <li>Queda disponible para revisión en el panel del proyecto.</li>
+              <li>Su estado cambia a medida que se revisa.</li>
+            </ol>
+          </div>
+
+          <div class="tarjeta tarjeta-info tarjeta-privacidad">
+            <h2>Privacidad</h2>
+            <p><strong>Qué guardamos:</strong> lo que escribas en este formulario y el archivo que adjuntes, si lo haces.</p>
+            <p><strong>Qué no hacemos:</strong> no publicamos los reportes, no los compartimos con terceros y no usamos tu correo para nada distinto a este caso.</p>
+            <p class="nota-menor">Este es un proyecto académico. No envíes documentos de identidad ni datos bancarios.</p>
+          </div>
+
+          <div class="tarjeta tarjeta-info">
+            <h2>¿Aún no estás seguro?</h2>
+            <p>Revisa las señales de cada tipo de caso antes de reportar.</p>
+            <a class="ruta-enlace" href="tipologias.html">Ver las tipologías →</a>
+          </div>
+        </aside>
       </div>
 
-      <form id="formulario-reporte" class="formulario" novalidate enctype="multipart/form-data">
-        <div class="campo">
-          <label for="fecha_incidente">Fecha del incidente</label>
-          <input type="date" id="fecha_incidente" name="fecha_incidente" required>
+      <!-- ============ CONFIRMACIÓN ============ -->
+      <div class="confirmacion" id="confirmacion" hidden tabindex="-1">
+        <span class="confirmacion-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+        </span>
+        <h2>Reporte registrado</h2>
+        <p class="confirmacion-expediente">
+          <span class="expediente-numero">Número de expediente</span>
+          <strong id="numero-expediente">—</strong>
+        </p>
+        <p>Guarda este número: es tu referencia para hacer seguimiento del caso.</p>
+
+        <div class="aviso" style="text-align:left; margin-top: var(--space-3);">
+          <div>
+            <strong>Esto no reemplaza una denuncia formal.</strong> Si el caso implica un delito, acude a la <a href="https://www.fiscalia.gov.co" target="_blank" rel="noopener">Fiscalía</a> o al <a href="https://www.ccp.gov.co" target="_blank" rel="noopener">Centro Cibernético Policial</a> con la evidencia que guardaste.
+          </div>
         </div>
 
-        <div class="campo">
-          <label for="nombre_afectado">Nombre de la persona afectada</label>
-          <input type="text" id="nombre_afectado" name="nombre_afectado" autocomplete="name" required>
+        <div class="resultado-acciones">
+          <button type="button" class="boton boton-outline" id="btn-otro-reporte">Reportar otro caso</button>
+          <a class="boton boton-primario" href="prevencion.html#ruta">Ver qué hacer ahora</a>
         </div>
-
-        <div class="campo">
-          <label for="correo_contacto">Correo de contacto</label>
-          <input type="email" id="correo_contacto" name="correo_contacto" autocomplete="email" required>
-          <span class="ayuda">Lo usaremos únicamente para dar seguimiento a este reporte.</span>
-        </div>
-
-        <div class="campo">
-          <label for="id_categoria">Tipo de caso</label>
-          <select id="id_categoria" name="id_categoria" required>
-            <option value="" selected disabled>Selecciona una categoría</option>
-          </select>
-        </div>
-
-        <div class="campo">
-          <label for="plataforma_origen">Plataforma donde ocurrió (opcional)</label>
-          <input type="text" id="plataforma_origen" name="plataforma_origen" placeholder="Ej: WhatsApp, Instagram, correo electrónico">
-        </div>
-
-        <div class="campo">
-          <label for="descripcion_hechos">Descripción de los hechos</label>
-          <textarea id="descripcion_hechos" name="descripcion_hechos" required minlength="10" maxlength="4000" placeholder="Describe qué ocurrió, cuándo lo notaste y qué señales de alerta identificaste."></textarea>
-        </div>
-
-        <div class="campo">
-          <label for="tipo_evidencia">Tipo de evidencia (opcional)</label>
-          <select id="tipo_evidencia" name="tipo_evidencia">
-            <option value="" selected>Sin evidencia adjunta</option>
-            <option value="Captura de pantalla">Captura de pantalla</option>
-            <option value="Documento">Documento (PDF)</option>
-            <option value="Audio">Audio</option>
-            <option value="Video">Video</option>
-            <option value="Enlace">Enlace / URL</option>
-            <option value="Otro">Otro</option>
-          </select>
-        </div>
-
-        <div class="campo">
-          <label for="archivo_evidencia">Subir archivo de evidencia (opcional)</label>
-          <input type="file" id="archivo_evidencia" name="archivo_evidencia"
-                 accept="image/jpeg,image/png,image/webp,application/pdf,audio/mpeg,audio/wav,audio/ogg,video/mp4,video/webm">
-          <span class="ayuda">Imagen, PDF, audio o video. Máximo 15 MB.</span>
-        </div>
-
-        <div class="campo">
-          <label for="enlace_archivo">O pega un enlace a la evidencia (opcional)</label>
-          <input type="url" id="enlace_archivo" name="enlace_archivo" placeholder="Ej: enlace de Google Drive, Imgur, etc.">
-          <span class="ayuda">Usa esto solo si NO subiste un archivo arriba: pega un enlace externo (Drive, Imgur, etc.).</span>
-        </div>
-
-        <div>
-          <button type="submit" class="boton boton-outline">Enviar reporte</button>
-        </div>
-
-        <div id="mensaje-estado" class="mensaje-estado" role="status" aria-live="polite"></div>
-      </form>
+      </div>
     </section>
   </main>
 
