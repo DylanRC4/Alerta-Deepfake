@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerta Deepfake — Conceptos clave</title>
+  <meta name="description" content="Qué es la inteligencia artificial generativa, cómo funciona, y por qué tus datos personales y biométricos —tu voz y tu rostro— tienen una protección legal especial en Colombia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="franja-alerta" aria-hidden="true"></div>
+
+  <div class="barra-institucional">
+    <div class="contenedor">
+      <img class="logo-u" src="img/logoU.jpg" alt="Universitaria de Colombia"
+           onerror="this.closest('.barra-institucional').remove();">
+      <span class="barra-institucional-texto">Ingeniería de Software · Proyecto ABP</span>
+    </div>
+  </div>
+
+  <header class="sitio-header">
+    <nav class="nav-barra" aria-label="Navegación principal">
+      <a class="marca" href="index.html">Alerta Deepfake<span>Proyecto ABP · Ingeniería Web</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu-principal">Menú</button>
+      <ul class="nav-lista" id="menu-principal">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="conceptos.html" aria-current="page">Conceptos</a></li>
+        <li><a href="tipologias.html">Tipologías</a></li>
+        <li><a href="simulador.html">Simulador</a></li>
+        <li><a href="prevencion.html">Prevención</a></li>
+        <li><a href="reporte.html">Reportar</a></li>
+        <li class="nav-separador" aria-hidden="true"></li>
+        <li class="nav-secundario"><a href="acerca.html">Acerca de</a></li>
+        <li class="nav-secundario"><a href="panel.html">Panel</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero">
+      <div class="contenedor">
+        <div class="hero-texto">
+          <span class="expediente-numero">Fundamentos</span>
+          <h1>Entender la tecnología antes de temerle</h1>
+          <p>Dos ideas explican por qué los deepfakes son posibles y por qué son un problema legal: cómo funciona la inteligencia artificial generativa, y qué hace tan especiales a tu voz y tu rostro.</p>
+        </div>
+        <div class="sello" aria-hidden="true">Marco<br>conceptual</div>
+      </div>
+    </section>
+
+    <!-- ====== ÍNDICE ====== -->
+    <nav class="indice-pagina contenedor" aria-label="Secciones de esta página">
+      <a href="#ia-generativa">IA generativa</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#datos-personales">Datos personales</a>
+      <a href="#biometricos">Datos biométricos</a>
+      <a href="#conexion">Por qué importa</a>
+      <a href="#glosario">Glosario</a>
+    </nav>
+
+    <!-- ================================================
+         1. QUÉ ES LA IA GENERATIVA
+         ================================================ -->
+    <section class="contenedor" id="ia-generativa" aria-labelledby="t-ia">
+      <span class="expediente-numero">Concepto 01</span>
+      <h2 id="t-ia">¿Qué es la inteligencia artificial generativa?</h2>
+
+      <div class="definicion-destacada" data-revelar>
+        <p>Es una familia de sistemas capaces de <strong>crear contenido nuevo</strong> —imágenes, voces, videos, texto— a partir de patrones que aprendieron observando enormes cantidades de ejemplos reales.</p>
+      </div>
+
+      <div class="dos-columnas">
+        <div>
+          <h3>La diferencia con la IA tradicional</h3>
+          <p>La inteligencia artificial que ya conocías <strong>clasifica</strong>: mira una foto y responde "esto es un gato". Recibe algo existente y emite un juicio sobre ello.</p>
+          <p>La generativa hace lo contrario: <strong>produce</strong>. No responde "esto es un gato", sino que dibuja un gato que nunca existió. No identifica una voz: fabrica una.</p>
+          <p>Ese salto —de juzgar a crear— es lo que hizo posible el deepfake.</p>
+        </div>
+        <div>
+          <h3>No copia, recombina</h3>
+          <p>Un error común es pensar que la IA guarda las imágenes que vio y las pega. No funciona así: lo que conserva son <strong>relaciones estadísticas</strong>. Aprende que en un rostro humano los ojos suelen estar a cierta distancia, que la luz cae de determinada forma, que ciertos sonidos siguen a otros al hablar.</p>
+          <p>Por eso puede generar infinitas caras distintas que jamás existieron, en lugar de repetir siempre las mismas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         2. CÓMO FUNCIONA — PROCESO VISUAL
+         ================================================ -->
+    <section class="contenedor" id="como-funciona" aria-labelledby="t-proceso">
+      <h2 id="t-proceso">Cómo se fabrica una voz que nunca existió</h2>
+      <p class="parrafo-guia">El proceso tiene tres momentos. Entenderlos explica por qué basta tan poco material para clonar a alguien.</p>
+
+      <ol class="proceso-ia">
+        <li data-revelar>
+          <span class="proceso-numero" aria-hidden="true">1</span>
+          <span class="proceso-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-8"/>
+            </svg>
+          </span>
+          <h3>Entrenamiento</h3>
+          <p>El modelo procesa millones de ejemplos reales —voces, rostros, videos— sin saber de quién son. Solo busca regularidades.</p>
+          <span class="proceso-dato">Se hace una sola vez, con datos de internet</span>
+        </li>
+
+        <li data-revelar>
+          <span class="proceso-numero" aria-hidden="true">2</span>
+          <span class="proceso-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/>
+              <circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/>
+              <path d="m7 7 3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/>
+            </svg>
+          </span>
+          <h3>Ajuste a una persona</h3>
+          <p>Con el modelo ya entrenado, basta una muestra corta de <em>tu</em> voz para que ajuste lo aprendido a tus características particulares.</p>
+          <span class="proceso-dato">Aquí entran tus audios públicos</span>
+        </li>
+
+        <li data-revelar>
+          <span class="proceso-numero" aria-hidden="true">3</span>
+          <span class="proceso-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/>
+            </svg>
+          </span>
+          <h3>Generación</h3>
+          <p>El sistema produce frases que esa persona nunca dijo, con su timbre y su entonación. El contenido lo decide quien opera la herramienta.</p>
+          <span class="proceso-dato">Segundos por cada frase nueva</span>
+        </li>
+      </ol>
+
+      <div class="aviso">
+        <div>
+          <strong>La consecuencia incómoda:</strong> como el paso 1 ya está hecho y disponible públicamente, el atacante solo necesita el paso 2. Y para eso le basta con material que tú mismo publicaste: una historia, una nota de voz reenviada, un video de una reunión.
+        </div>
+      </div>
+
+      <div class="dos-columnas" style="margin-top: var(--space-3);">
+        <div class="tarjeta tarjeta-uso-bueno">
+          <span class="expediente-numero">Uso legítimo</span>
+          <h3>La misma tecnología, bien usada</h3>
+          <ul>
+            <li>Voces sintéticas para personas que perdieron el habla</li>
+            <li>Doblaje de películas conservando la voz del actor original</li>
+            <li>Restauración de material histórico deteriorado</li>
+            <li>Accesibilidad: lectura de textos en voz natural</li>
+          </ul>
+        </div>
+        <div class="tarjeta tarjeta-uso-malo">
+          <span class="expediente-numero">Uso malicioso</span>
+          <h3>La misma tecnología, mal usada</h3>
+          <ul>
+            <li>Suplantar a un familiar para pedir dinero urgente</li>
+            <li>Fabricar declaraciones falsas de figuras públicas</li>
+            <li>Crear perfiles con identidades inventadas</li>
+            <li>Superar sistemas de verificación por voz o rostro</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="nota-cierre">El problema no es la tecnología en sí, sino el uso sin consentimiento de la identidad de otra persona. Esa distinción es exactamente la que recoge la ley.</p>
+    </section>
+
+    <!-- ================================================
+         3. DATOS PERSONALES
+         ================================================ -->
+    <section class="contenedor" id="datos-personales" aria-labelledby="t-datos">
+      <span class="expediente-numero">Concepto 02</span>
+      <h2 id="t-datos">Qué son los datos personales</h2>
+
+      <div class="definicion-destacada" data-revelar>
+        <p>Es <strong>cualquier información que permita identificarte</strong>, directa o indirectamente. No solo tu cédula: también tu correo, tu ubicación, tus huellas digitales de navegación y, por supuesto, tu rostro y tu voz.</p>
+      </div>
+
+      <p class="parrafo-guia">La legislación colombiana no trata todos los datos igual. La <strong>Ley 1581 de 2012</strong> los clasifica según qué tan sensible resulta su divulgación, y ese nivel determina qué protección reciben:</p>
+
+      <ul class="niveles-datos">
+        <li class="nivel nivel-1" data-revelar>
+          <span class="nivel-marca" aria-hidden="true"></span>
+          <div>
+            <h3>Datos públicos</h3>
+            <p>No son reservados. Cualquiera puede consultarlos sin tu autorización.</p>
+            <span class="nivel-ejemplo">Nombre, profesión u oficio, tu calidad de comerciante</span>
+          </div>
+        </li>
+        <li class="nivel nivel-2" data-revelar>
+          <span class="nivel-marca" aria-hidden="true"></span>
+          <div>
+            <h3>Datos semiprivados</h3>
+            <p>Interesan a un sector específico, no al público general. Requieren autorización.</p>
+            <span class="nivel-ejemplo">Historial crediticio, comportamiento financiero</span>
+          </div>
+        </li>
+        <li class="nivel nivel-3" data-revelar>
+          <span class="nivel-marca" aria-hidden="true"></span>
+          <div>
+            <h3>Datos privados</h3>
+            <p>Pertenecen a tu ámbito íntimo. Solo tú puedes autorizar su tratamiento.</p>
+            <span class="nivel-ejemplo">Correspondencia, hábitos personales, documentos privados</span>
+          </div>
+        </li>
+        <li class="nivel nivel-4" data-revelar>
+          <span class="nivel-marca" aria-hidden="true"></span>
+          <div>
+            <h3>Datos sensibles <span class="etiqueta-critica">máxima protección</span></h3>
+            <p>Afectan tu intimidad o su uso indebido puede generar discriminación. Su tratamiento está prohibido salvo excepciones muy puntuales, y nunca puedes ser obligado a entregarlos.</p>
+            <span class="nivel-ejemplo">Salud, vida sexual, convicciones religiosas o políticas, origen étnico… <strong>y datos biométricos</strong></span>
+          </div>
+        </li>
+      </ul>
+
+      <p class="nota-fuente">Clasificación establecida en la Ley 1581 de 2012 (Habeas Data). El artículo 5 enumera expresamente los datos biométricos dentro de la categoría de datos sensibles.</p>
+    </section>
+
+    <!-- ================================================
+         4. DATOS BIOMÉTRICOS
+         ================================================ -->
+    <section class="contenedor" id="biometricos" aria-labelledby="t-bio">
+      <span class="expediente-numero">Concepto 03</span>
+      <h2 id="t-bio">Datos biométricos: lo que no puedes cambiar</h2>
+
+      <div class="definicion-destacada" data-revelar>
+        <p>Son las <strong>características físicas o de comportamiento que te identifican de forma única</strong>: tu rostro, tu voz, tu huella dactilar, tu iris, incluso tu forma de caminar o de teclear.</p>
+      </div>
+
+      <p class="parrafo-guia">Su valor —y su riesgo— viene de una propiedad que ningún otro dato tiene:</p>
+
+      <div class="comparativa" data-revelar>
+        <div class="comparativa-lado comparativa-recuperable">
+          <span class="comparativa-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/>
+              <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>
+            </svg>
+          </span>
+          <h3>Una contraseña</h3>
+          <p class="comparativa-estado">Se puede reemplazar</p>
+          <p>Si la filtran, la cambias en dos minutos y el daño se detiene ahí. La contraseña vieja deja de servir para siempre.</p>
+        </div>
+
+        <div class="comparativa-vs" aria-hidden="true">frente a</div>
+
+        <div class="comparativa-lado comparativa-irrecuperable">
+          <span class="comparativa-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/><path d="M12 15v3"/>
+            </svg>
+          </span>
+          <h3>Tu voz o tu rostro</h3>
+          <p class="comparativa-estado">No se puede reemplazar</p>
+          <p>Si alguien obtiene material suficiente para clonarlos, no existe forma de "cambiar" tu cara. El riesgo te acompaña de por vida.</p>
+        </div>
+      </div>
+
+      <p class="parrafo-guia" style="margin-top: var(--space-3);">Esa irreversibilidad es la razón exacta por la que la ley les da tratamiento de dato sensible. No es una formalidad burocrática: es el reconocimiento de que un daño así no tiene reparación técnica posible.</p>
+
+      <div class="tarjetas tarjetas-4">
+        <article class="tarjeta">
+          <h3>Rostro</h3>
+          <p>Expuesto en cada foto de perfil, cada video, cada etiqueta en redes sociales.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Voz</h3>
+          <p>Expuesta en notas de audio, historias, videollamadas grabadas y mensajes reenviados.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Huella e iris</h3>
+          <p>Más protegidos, porque requieren un sensor físico. Por ahora son el factor más difícil de suplantar.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Comportamiento</h3>
+          <p>Tu forma de escribir, de moverte o de sostener el teléfono. Se recolectan sin que lo notes.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================================================
+         5. LA CONEXIÓN
+         ================================================ -->
+    <section class="contenedor" id="conexion" aria-labelledby="t-conexion">
+      <div class="ecuacion" data-revelar>
+        <h2 id="t-conexion">Por qué estos dos conceptos van juntos</h2>
+        <div class="ecuacion-terminos">
+          <div class="ecuacion-termino">
+            <span class="ecuacion-titulo">IA generativa</span>
+            <span class="ecuacion-detalle">Capaz de fabricar voces y rostros convincentes</span>
+          </div>
+          <span class="ecuacion-signo" aria-hidden="true">+</span>
+          <div class="ecuacion-termino">
+            <span class="ecuacion-titulo">Datos biométricos expuestos</span>
+            <span class="ecuacion-detalle">Tu voz y tu cara, públicas en internet</span>
+          </div>
+          <span class="ecuacion-signo" aria-hidden="true">=</span>
+          <div class="ecuacion-termino ecuacion-resultado">
+            <span class="ecuacion-titulo">Suplantación de identidad</span>
+            <span class="ecuacion-detalle">Alguien puede ser tú, sin tu consentimiento</span>
+          </div>
+        </div>
+        <p class="ecuacion-cierre">Ninguno de los dos factores es peligroso por sí solo. Es su combinación la que crea el problema —y por eso la respuesta tiene que ser doble: reducir lo que expones, y aprender a reconocer lo fabricado.</p>
+      </div>
+
+      <div class="cierre-acciones">
+        <a class="boton boton-primario" href="tipologias.html">Ver cómo se reconoce cada tipo</a>
+        <a class="boton boton-outline" href="prevencion.html#proteger">Reducir mi exposición</a>
+      </div>
+    </section>
+
+    <!-- ================================================
+         6. GLOSARIO
+         ================================================ -->
+    <section class="contenedor" id="glosario" aria-labelledby="t-glosario">
+      <h2 id="t-glosario">Glosario</h2>
+      <p class="parrafo-guia">Los términos que aparecen en el resto del sitio, en una sola frase cada uno.</p>
+
+      <dl class="glosario">
+        <div class="glosario-item">
+          <dt>Deepfake</dt>
+          <dd>Contenido audiovisual en el que la identidad de una persona ha sido sustituida o fabricada mediante inteligencia artificial. El nombre combina <em>deep learning</em> y <em>fake</em>.</dd>
+        </div>
+        <div class="glosario-item">
+          <dt>IA generativa</dt>
+          <dd>Sistemas que crean contenido nuevo a partir de patrones aprendidos, en lugar de limitarse a clasificar contenido existente.</dd>
+        </div>
+        <div class="glosario-item">
+          <dt>Clonación de voz</dt>
+          <dd>Reproducción sintética del timbre y la entonación de una persona a partir de una muestra breve de audio real.</dd>
+        </div>
+        <div class="glosario-item">
+          <dt>Dato personal</dt>
+          <dd>Cualquier información vinculada a una persona que permita identificarla, directa o indirectamente.</dd>
+        </div>
+        <div class="glosario-item">
+          <dt>Dato sensible</dt>
+          <dd>Categoría de dato personal cuya divulgación afecta la intimidad o puede generar discriminación. Recibe la máxima protección legal.</dd>
+        </div>
+        <div class="glosario-item">
+          <dt>Dato biométrico</dt>
+          <dd>Característica física o de comportamiento que identifica a una persona de forma única e irreemplazable.</dd>
+        </div>
+        <div class="glosario-item">
+          <dt>Habeas Data</dt>
+          <dd>Derecho fundamental a conocer, actualizar y rectificar la información que otros tienen sobre uno. En Colombia lo desarrolla la Ley 1581 de 2012.</dd>
+        </div>
+        <div class="glosario-item">
+          <dt>Ingeniería social</dt>
+          <dd>Manipulación psicológica para que una persona entregue información o realice una acción. La urgencia y la autoridad son sus herramientas más frecuentes.</dd>
+        </div>
+        <div class="glosario-item">
+          <dt>Suplantación de identidad</dt>
+          <dd>Hacerse pasar por otra persona para obtener un beneficio o causar un daño. Está tipificada como delito en el Código Penal colombiano.</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="sitio-footer">
+    <div class="contenedor">
+      <p><strong>Aviso:</strong> este es un proyecto educativo (Aprendizaje Basado en Problemas — Ingeniería Web) y no reemplaza una denuncia oficial. Para denunciar, acude a la <a href="https://www.fiscalia.gov.co" target="_blank" rel="noopener">Fiscalía General de la Nación</a> o al <a href="https://www.ccp.gov.co" target="_blank" rel="noopener">Centro Cibernético Policial</a>.</p>
+      <p class="cita-legal">Basado en la Ley 1273 de 2009 (Delitos Informáticos) y la Ley 1581 de 2012 (Habeas Data), Colombia.</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
