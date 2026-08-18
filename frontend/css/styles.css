@@ -135,8 +135,8 @@ a:hover { color: var(--color-stamp-amber); }
 
 .marca {
   display: flex;
-  align-items: center;
-  gap: 0.7rem;
+  align-items: baseline;
+  gap: 0.5rem;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.4rem;
@@ -145,14 +145,7 @@ a:hover { color: var(--color-stamp-amber); }
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
-.marca-texto {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.marca span span,
-.marca-texto span {
+.marca span {
   font-family: var(--font-mono);
   font-weight: 500;
   font-size: 0.65rem;
@@ -161,17 +154,45 @@ a:hover { color: var(--color-stamp-amber); }
   letter-spacing: 0.08em;
 }
 
-/* Logo de la universidad. Si el archivo no existe, el onerror lo retira del
-   DOM y la marca se ve exactamente como antes, sin hueco ni icono roto. */
-.logo-u {
-  height: 2.4rem;
-  width: auto;
-  flex-shrink: 0;
-  border-radius: 4px;
+/* ---------- Banda institucional ----------
+   El logo es texto negro sobre blanco: sobre la barra oscura obligaría a un
+   recuadro blanco que parece una calcomanía. Con su propia banda clara queda
+   legible, con tamaño digno, y separa la identidad de la universidad de la
+   del proyecto. No es fija: se desplaza al hacer scroll y deja la navegación
+   como único elemento pegado arriba. */
+.barra-institucional {
   background: #fff;
-  padding: 2px;
+  border-bottom: 1px solid var(--color-border);
 }
-@media (min-width: 768px) { .logo-u { height: 2.8rem; } }
+.barra-institucional .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+.logo-u {
+  height: 2.7rem;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+@media (min-width: 768px) { .logo-u { height: 3.4rem; } }
+
+.barra-institucional-texto {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-soft);
+  text-align: right;
+}
+@media (max-width: 480px) {
+  /* En pantallas angostas el texto compite con el logo: mejor solo el logo */
+  .barra-institucional-texto { display: none; }
+}
 
 .nav-toggle {
   display: inline-flex;
