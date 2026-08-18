@@ -1,51 +1,48 @@
 IMÁGENES DEL SITIO
 ==================
 
-Coloca aquí las imágenes con estos nombres EXACTOS.
-Si alguna falta, la página no se rompe: simplemente oculta el hueco y
-deja el texto explicativo. Puedes ir agregándolas de a poco.
-
-
-1. FOTO DEL DESARROLLADOR (página "Acerca de")
-   Nombre: dylan.jpeg          [YA ESTÁ PUESTA]
-   Formato vertical o cuadrado. Se recorta centrada en la parte superior.
-
-
-2. ILUSTRACIONES DE TIPOLOGÍAS (página "Tipologías")
-   Formato horizontal, proporción 4:3 aproximadamente (ej. 800x600 px).
-   Máximo 300 KB cada una para que la página cargue rápido.
-
+ARCHIVOS EN USO
+---------------
+   dylan.jpeg             -> Foto del desarrollador (página "Acerca de")
    tipologia-voz.jpg      -> Expediente 01 · Clonación de voz
-                             Ideas: alguien atendiendo una llamada con gesto
-                             de preocupación, un teléfono con llamada entrante
-                             de número desconocido, ondas de audio.
-
    tipologia-rostro.jpg   -> Expediente 02 · Generación de rostro
-                             Ideas: retrato con aspecto artificial, cuadrícula
-                             sobre un rostro, comparación de dos caras.
-
    tipologia-video.jpg    -> Expediente 03 · Video falso
-                             Ideas: pantalla reproduciendo un video, rostro con
-                             efecto de distorsión digital, franjas de glitch.
-
    tipologia-perfil.jpg   -> Expediente 04 · Perfil falso
-                             Ideas: pantalla de red social, perfil genérico,
-                             muchos seguidores sin interacción.
+
+Si alguna falta, la página no se rompe: oculta el hueco y deja el texto.
 
 
-DÓNDE CONSEGUIRLAS (gratis y de uso libre)
-------------------------------------------
-   unsplash.com     — fotos, licencia libre, no requiere atribución
-   pexels.com       — fotos y video, licencia libre
-   undraw.co        — ilustraciones vectoriales, permiten cambiar el color
-                      (usa el azul #1B3A6B para que combine con el sitio)
-   storyset.com     — ilustraciones editables
+SI REEMPLAZAS UNA ILUSTRACIÓN
+-----------------------------
+   Formato:     JPG (no PNG: pesa entre 15 y 20 veces más)
+   Proporción:  16:9 horizontal
+   Ancho:       1100 px (suficiente para pantallas retina)
+   Peso:        por debajo de 150 KB
+
+   Para convertir y optimizar una imagen nueva desde la terminal Linux:
+
+      cd ~/alerta-deepfake/frontend/img
+      python3 -c "
+      from PIL import Image
+      im = Image.open('ORIGEN.png').convert('RGB')
+      im = im.resize((1100, round(im.height*1100/im.width)), Image.LANCZOS)
+      im.save('DESTINO.jpg','JPEG',quality=82,optimize=True,progressive=True)
+      "
+
+   (requiere Pillow: sudo pacman -S python-pillow)
 
 
-IMPORTANTE
-----------
-   Evita fotos donde se reconozca el rostro de una persona real
+POR QUÉ JPG Y NO PNG
+--------------------
+   Las cuatro ilustraciones originales en PNG pesaban 8,2 MB en total.
+   Convertidas a JPG quedaron en 478 KB, sin diferencia visible a simple
+   vista. PNG es mejor para logos, iconos y capturas con texto; JPG gana
+   claramente en fotografías e ilustraciones con degradados.
+
+
+ADVERTENCIA SOBRE EL CONTENIDO
+------------------------------
+   Evita imágenes donde se reconozca el rostro de una persona real
    identificable: la página trata sobre suplantación de identidad, y
    asociar la cara de alguien real a un ejemplo de fraude puede causarle
-   un perjuicio. Prefiere ilustraciones, imágenes conceptuales, o fotos
-   donde el rostro no sea el foco.
+   un perjuicio.
